@@ -1,0 +1,23 @@
+@reference "../globals.css";
+
+.wrapper {
+  @apply min-h-screen pt-32 pb-20 bg-white;
+}
+.container {
+  @apply container mx-auto px-6 md:px-12;
+}
+.title {
+  @apply text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center;
+}
+.emptyState {
+  @apply flex flex-col items-center justify-center p-12 bg-blue-50 rounded-3xl border border-blue-100 border-dashed;
+}
+.emptyIcon {
+  @apply text-4xl mb-4;
+}
+.emptyTitle {
+  @apply text-xl font-medium text-gray-700;
+}
+.emptyText {
+  @apply text-gray-500 mt-2 text-center max-w-md;
+}

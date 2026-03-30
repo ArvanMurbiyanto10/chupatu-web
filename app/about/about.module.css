@@ -1,0 +1,107 @@
+@reference "../globals.css";
+
+/* --- WRAPPER UTAMA DOMINAN PUTIH --- */
+.wrapper {
+  @apply bg-white min-h-screen overflow-hidden text-slate-900 pt-32 pb-24 selection:bg-[#0F172A] selection:text-white relative;
+}
+.bgGlow {
+  /* Pendaran cahaya biru muda di atas latar putih */
+  @apply absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full mix-blend-multiply filter blur-[150px] opacity-70;
+}
+.container {
+  @apply container mx-auto px-6 md:px-12 relative z-10;
+}
+
+/* --- HERO SECTION --- */
+.header {
+  @apply text-center max-w-4xl mx-auto mb-24 flex flex-col items-center;
+}
+.badge {
+  /* Badge Navy/Putih senada dengan Beranda baru */
+  @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 border border-slate-200 text-[#0F172A] text-sm font-medium mb-8;
+}
+.title {
+  /* Judul Navy Blue (Biru Paus) Dominan */
+  @apply text-5xl md:text-7xl font-extrabold text-[#0F172A] leading-[1.1] mb-6 tracking-tighter;
+}
+.textHighlight {
+  /* Teks Highlight tetap berwarna cerah agar kontras di latar putih */
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500;
+}
+.subtitle {
+  /* Deskripsi menggunakan Hitam untuk ketegasan */
+  @apply text-lg md:text-xl text-black leading-relaxed max-w-3xl font-light;
+}
+
+/* --- VISI MISI SECTION --- */
+.visiMisiGrid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-12 mb-32;
+}
+.cardVisiMisi {
+  /* Kartu Putih Bersih dengan Shadow Halus */
+  @apply p-10 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/50 relative overflow-hidden;
+}
+.visiIcon,
+.misiIcon {
+  @apply text-5xl mb-6 flex-shrink-0;
+}
+.visiIcon {
+  @apply text-cyan-600;
+}
+.misiIcon {
+  @apply text-purple-600;
+}
+
+.visiTitle,
+.misiTitle {
+  @apply text-3xl font-bold text-[#0F172A] mb-6 tracking-tight;
+}
+.listMisi {
+  /* Deskripsi Hitam/Abu Tua untuk kontras maksimal */
+  @apply space-y-4 text-slate-700 leading-relaxed;
+}
+
+/* --- MASALAH & SOLUSI SECTION --- */
+.problemSolutionSection {
+  /* Menggunakan Off-white (slate-50) untuk membedakan seksi */
+  @apply bg-slate-50 border border-slate-100 p-12 md:p-16 rounded-[2rem] shadow-xl shadow-slate-200/30 mb-32 relative overflow-hidden;
+}
+.problemSolutionGlow {
+  @apply absolute inset-0 bg-gradient-to-br from-blue-50 to-white -z-10;
+}
+.storyTitle {
+  @apply text-4xl md:text-5xl font-extrabold text-center text-[#0F172A] mb-16 tracking-tight max-w-3xl mx-auto leading-tight;
+}
+.storyGrid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-16 items-center;
+}
+.imagePlaceholder {
+  /* Kotak Gambar Navy Blue Dominan */
+  @apply w-full aspect-square rounded-3xl bg-[#0F172A] border border-white/10 flex items-center justify-center text-8xl text-white shadow-inner;
+}
+.storyText {
+  @apply space-y-6 text-lg text-slate-700 leading-relaxed font-light;
+}
+
+/* --- KEUNGGULAN SECTION --- */
+.valuesSection {
+  @apply text-center mb-32;
+}
+.valuesTitle {
+  @apply text-4xl font-bold text-[#0F172A] mb-16 tracking-tight;
+}
+.valuesGrid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-8;
+}
+.cardValue {
+  @apply p-8 rounded-2xl bg-white border border-slate-100 flex flex-col items-center hover:border-blue-200 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300;
+}
+.valueIconBox {
+  @apply w-16 h-16 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-3xl text-[#0F172A] mb-6;
+}
+.valueTitle {
+  @apply text-xl font-semibold text-black mb-2;
+}
+.valueDesc {
+  @apply text-slate-600 text-sm leading-relaxed;
+}

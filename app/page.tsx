@@ -1,65 +1,483 @@
-import Image from "next/image";
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Link from "next/link";
+import {
+  FiArrowRight,
+  FiSmartphone,
+  FiCpu,
+  FiMap,
+  FiFileText,
+  FiMessageCircle,
+  FiBox,
+  FiUserCheck,
+  FiCheckCircle,
+  FiChevronRight,
+  FiStar,
+  FiShield,
+  FiZap,
+  FiDroplet,
+  FiFeather,
+  FiLayers,
+  FiSun,
+} from "react-icons/fi";
+import styles from "./home.module.css";
 
 export default function Home() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const servicesData = [
+    {
+      icon: FiDroplet,
+      title: "Cuci Reguler",
+      desc: "Pembersihan menyeluruh untuk penggunaan harian.",
+    },
+    {
+      icon: FiLayers,
+      title: "Deep Clean",
+      desc: "Perawatan intensif hingga ke pori-pori material sepatu.",
+    },
+    {
+      icon: FiFeather,
+      title: "Repaint",
+      desc: "Restorasi warna pudar agar kembali tajam seperti baru.",
+    },
+    {
+      icon: FiSun,
+      title: "Unyellowing",
+      desc: "Menghilangkan noda kuning membandel pada midsole sepatu.",
+    },
+  ];
+
+  const bottomIcons = [
+    { icon: FiSmartphone, label: "Akses Cepat" },
+    { icon: FiCpu, label: "AI Gemini" },
+    { icon: FiMap, label: "Live Tracking" },
+    { icon: FiFileText, label: "Invoice Digital" },
+    { icon: FiBox, label: "Rak Digital" },
+  ];
+
+  const howItWorks = [
+    {
+      step: "01",
+      title: "Pilih Layanan",
+      desc: "Pilih perawatan yang sepatumu butuhkan via UI intuitif.",
+    },
+    {
+      step: "02",
+      title: "AI Menganalisis",
+      desc: "Magic Result AI merekomendasikan treatment terbaik.",
+    },
+    {
+      step: "03",
+      title: "Kurir Menjemput",
+      desc: "Pantau pergerakan kurir secara real-time via GPS.",
+    },
+    {
+      step: "04",
+      title: "Sepatu Kembali",
+      desc: "Verifikasi pengembalian dan nikmati sepatu seperti baru.",
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div ref={containerRef} className={styles.mainWrapper}>
+      {/* ==================== 1. HERO SECTION ==================== */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroBgGlow}></div>
+        <div className={`${styles.sectionContainer} ${styles.heroGrid}`}>
+          <motion.div
+            style={{ y: yText, opacity }}
+            className="relative z-10 pt-10 lg:pt-0"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className={styles.heroTitle}
+            >
+              Perawatan Sepatu <br />
+              <span className="text-blue-600">Premium,</span> <br />
+              Di Genggaman.
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              className={styles.heroSubtitle}
+            >
+              Didukung AI. Lacak secara Real-Time. Hasil Magis. Kembalikan
+              pesona sepatu kesayanganmu tanpa harus keluar rumah.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className={styles.btnGroup}
+            >
+              <button className={`${styles.btnNavy} hover:bg-blue-900`}>
+                UNDUH SEKARANG <FiArrowRight />
+              </button>
+              <button className={`${styles.btnOutline} hover:bg-blue-50`}>
+                LEBIH LANJUT
+              </button>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            style={{ y: yImage }}
+            className={`hidden lg:flex ${styles.mockupContainer}`}
           >
-            Documentation
-          </a>
+            <motion.div
+              initial={{ opacity: 0, rotateY: 15, rotateX: 5, scale: 0.9 }}
+              animate={{ opacity: 1, rotateY: -5, rotateX: 0, scale: 1 }}
+              transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+              className={styles.mainPhone}
+            >
+              <div className={styles.phoneScreen}>
+                <div className="bg-white px-4 pt-12 pb-4 border-b border-blue-50 flex items-center justify-between z-10">
+                  <FiChevronRight className="rotate-180 text-xl text-[#0F172A]" />
+                  <h3 className="font-bold text-sm text-[#0F172A]">
+                    Live Tracking
+                  </h3>
+                  <FiShield className="text-[#0F172A]" />
+                </div>
+                <div className="flex-1 bg-blue-50 relative overflow-hidden">
+                  <svg
+                    className="absolute inset-0 w-full h-full"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M 50 100 Q 150 150 200 300 T 150 450"
+                      fill="transparent"
+                      stroke="#0F172A"
+                      strokeWidth="4"
+                      strokeDasharray="8 8"
+                      className="animate-pulse"
+                    />
+                  </svg>
+                  <div className="absolute top-[280px] left-[180px] w-10 h-10 bg-[#0F172A] rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
+                    <FiMap />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, -15, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className={`${styles.glassCard} ${styles.cardBooking}`}
+            >
+              <h4 className="font-bold text-sm mb-3 text-[#0F172A]">
+                Booking Progress
+              </h4>
+              <ul className="space-y-2 text-xs font-bold text-[#0F172A]/50">
+                <li className="flex items-center gap-2 text-[#0F172A]">
+                  <FiCheckCircle className="text-blue-600" /> Confirmed
+                </li>
+                <li className="flex items-center gap-2 text-[#0F172A]">
+                  <FiCheckCircle className="text-blue-600" /> Pick-up
+                </li>
+                <li className="flex items-center gap-2 text-blue-600 relative">
+                  <span className="w-2 h-2 rounded-full bg-blue-600 ml-1 animate-ping absolute -left-1"></span>
+                  <span className="ml-3">Cleaning</span>
+                </li>
+              </ul>
+            </motion.div>
+          </motion.div>
         </div>
-      </main>
+      </section>
+
+      {/* ==================== 2. KENAPA HARUS CHUPATU? ==================== */}
+      <section className={styles.whyChupatuSection}>
+        <div className={styles.whyContainer}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className={styles.whyBadge}
+          >
+            Kenapa Harus Chupatu?
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className={styles.whyParagraph}
+          >
+            Karena sepatumu layak mendapatkan perawatan terbaik, bukan hanya
+            dicuci bersih. Setiap sepatu dibersihkan dengan teknik khusus sesuai
+            bahan, dan{" "}
+            <span className={styles.whyHighlight}>
+              sabun pilihan ibu agar warna tetap tajam, bentuk tetap rapi, dan
+              umur sepatu lebih panjang.
+            </span>{" "}
+            Noda bandel? Bau? Kusam?
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className={`${styles.whyParagraph} !text-white !font-black`}
+          >
+            Kami tangani sampai bersih maksimal tanpa bikin sepatu rusak.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ==================== 3. LAYANAN UTAMA KAMI ==================== */}
+      <section className={styles.servicesSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Layanan Utama <span className="text-blue-600">Kami.</span>
+            </h2>
+            <p className={styles.sectionDesc}>
+              Berbagai kategori layanan profesional yang disesuaikan dengan
+              kebutuhan material sepatumu.
+            </p>
+          </div>
+          <div className={styles.servicesGrid}>
+            {servicesData.map((srv, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className={`${styles.serviceCard} group hover:bg-[#0F172A] hover:border-[#0F172A] hover:-translate-y-2`}
+              >
+                <div className="w-16 h-16 bg-white text-[#0F172A] rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <srv.icon />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-[#0F172A] group-hover:text-white transition-colors">
+                  {srv.title}
+                </h3>
+                <p className="text-[#0F172A]/70 font-medium group-hover:text-blue-100 transition-colors">
+                  {srv.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 4. BENTO GRID HIGHLIGHTS ==================== */}
+      <section className={styles.bentoSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.bentoGrid}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className={`${styles.bentoCard} group hover:-translate-y-2 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-900/10`}
+            >
+              <div>
+                <h3 className="text-xl font-black mb-2 uppercase text-[#0F172A]">
+                  Magic Result AI
+                </h3>
+                <p className="text-[#0F172A]/70 text-sm font-medium">
+                  Analisis otomatis kerusakan dan material sepatu.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center justify-between bg-blue-50/50 p-4 rounded-2xl border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                <span className="font-bold text-blue-700 flex items-center gap-1">
+                  <FiCpu /> Gemini Engine
+                </span>
+                <span className="w-12 h-12 bg-[#0F172A] rounded-xl flex items-center justify-center text-white">
+                  <FiZap />
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className={`${styles.bentoCardDark} hover:scale-[1.02]`}
+            >
+              <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-[#0F172A] to-[#0F172A]"></div>
+              <div className="relative z-10 md:w-2/3 h-full flex flex-col justify-center">
+                <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg">
+                  <FiMap />
+                </div>
+                <h3 className="text-3xl font-black mb-4 uppercase text-white">
+                  Live Tracking Real-Time.
+                </h3>
+                <p className="text-blue-100/80 font-medium">
+                  Pantau pergerakan kurir secara langsung dengan akurasi tinggi
+                  via integrasi Polyline Routing.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 5. ICON STRIP SECTION ==================== */}
+      <section className={styles.iconStripSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.iconGrid}>
+            {bottomIcons.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`${styles.iconItem} group cursor-pointer`}
+              >
+                <div
+                  className={`${styles.iconBox} group-hover:bg-[#0F172A] group-hover:text-white group-hover:-translate-y-2`}
+                >
+                  <item.icon />
+                </div>
+                <span className={styles.iconLabel}>{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 6. HOW IT WORKS ==================== */}
+      <section className={styles.stepSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className={styles.sectionTitle}
+            >
+              Cara Kerja <span className="text-blue-600">Sistem Kami.</span>
+            </motion.h2>
+            <p className={styles.sectionDesc}>
+              Empat langkah mudah untuk mengembalikan pesona sepatu kesayanganmu
+              melalui ekosistem digital Chupatu.
+            </p>
+          </div>
+          <div className={styles.stepGrid}>
+            {howItWorks.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className={`${styles.stepCard} hover:-translate-y-2 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-900/10`}
+              >
+                <span className={styles.stepNumber}>{step.step}</span>
+                <div className="w-12 h-12 bg-[#0F172A] text-white rounded-xl flex items-center justify-center mb-6 relative z-10">
+                  <FiCheckCircle size={24} />
+                </div>
+                <h3 className="text-xl font-black text-[#0F172A] mb-3 relative z-10">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-[#0F172A]/70 leading-relaxed relative z-10 font-medium">
+                  {step.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 7. TESTIMONIAL ==================== */}
+      <section className={styles.testimonialSection}>
+        <div className={styles.sectionContainer}>
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
+              Apa Kata <span className="text-blue-400">Mereka?</span>
+            </h2>
+            <p className="text-blue-200 text-lg">
+              Dipercaya oleh ribuan pecinta sepatu di seluruh Indonesia.
+            </p>
+          </div>
+          <div className={styles.testimonialGrid}>
+            <div className={styles.testimonialCard}>
+              <div className="flex text-amber-400 mb-4">
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+              </div>
+              <p className="text-white/90 italic mb-6">
+                "Fitur live trackingnya juara! Saya nggak perlu lagi was-was
+                nungguin kurir datang ambil sepatu."
+              </p>
+              <h4 className="font-bold text-white">— Bima, Sneakerhead</h4>
+            </div>
+            <div className={styles.testimonialCard}>
+              <div className="flex text-amber-400 mb-4">
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+              </div>
+              <p className="text-white/90 italic mb-6">
+                "Magic Result AI benar-benar pintar. Otomatis tahu kalau sepatu
+                kulit saya butuh treatment khusus."
+              </p>
+              <h4 className="font-bold text-white">— Sarah, Mahasiswi</h4>
+            </div>
+            <div className={styles.testimonialCard}>
+              <div className="flex text-amber-400 mb-4">
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+                <FiStar className="fill-current" />
+              </div>
+              <p className="text-white/90 italic mb-6">
+                "Aplikasi paling rapi. Invoice PDF dan sistem barcodenya bikin
+                ngerasa aman banget."
+              </p>
+              <h4 className="font-bold text-white">— Reza, Pekerja Kantoran</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 8. MASSIVE CTA ==================== */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaGlow}></div>
+        <div className={styles.ctaContainer}>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className={styles.ctaTitle}
+          >
+            SIAP MERAWAT <br /> KOLEKSIMU?
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link href="/services">
+              <button
+                className={`${styles.ctaBtn} hover:scale-105 hover:bg-slate-50`}
+              >
+                DOWNLOAD APLIKASI <FiArrowRight className="text-blue-600" />
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }
