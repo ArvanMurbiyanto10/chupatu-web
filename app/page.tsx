@@ -9,9 +9,7 @@ import {
   FiCpu,
   FiMap,
   FiFileText,
-  FiMessageCircle,
   FiBox,
-  FiUserCheck,
   FiCheckCircle,
   FiChevronRight,
   FiStar,
@@ -91,7 +89,7 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className={styles.mainWrapper}>
-      {/* ==================== 1. HERO SECTION ==================== */}
+      {/* 1. HERO SECTION */}
       <section className={styles.heroSection}>
         <div className={styles.heroBgGlow}></div>
         <div className={`${styles.sectionContainer} ${styles.heroGrid}`}>
@@ -102,7 +100,7 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8 }}
               className={styles.heroTitle}
             >
               Perawatan Sepatu <br />
@@ -112,7 +110,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.1 }}
               className={styles.heroSubtitle}
             >
               Didukung AI. Lacak secara Real-Time. Hasil Magis. Kembalikan
@@ -124,10 +122,14 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className={styles.btnGroup}
             >
-              <button className={`${styles.btnNavy} hover:bg-blue-900`}>
+              <button
+                className={`${styles.btnNavy} hover:bg-blue-900 hover:-translate-y-1`}
+              >
                 UNDUH SEKARANG <FiArrowRight />
               </button>
-              <button className={`${styles.btnOutline} hover:bg-blue-50`}>
+              <button
+                className={`${styles.btnOutline} hover:bg-blue-50 hover:-translate-y-1`}
+              >
                 LEBIH LANJUT
               </button>
             </motion.div>
@@ -138,9 +140,9 @@ export default function Home() {
             className={`hidden lg:flex ${styles.mockupContainer}`}
           >
             <motion.div
-              initial={{ opacity: 0, rotateY: 15, rotateX: 5, scale: 0.9 }}
-              animate={{ opacity: 1, rotateY: -5, rotateX: 0, scale: 1 }}
-              transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+              initial={{ opacity: 0, rotateY: 15, scale: 0.9 }}
+              animate={{ opacity: 1, rotateY: -5, scale: 1 }}
+              transition={{ duration: 1.2 }}
               className={styles.mainPhone}
             >
               <div className={styles.phoneScreen}>
@@ -173,17 +175,17 @@ export default function Home() {
             </motion.div>
             <motion.div
               animate={{ y: [0, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              transition={{ repeat: Infinity, duration: 4 }}
               className={`${styles.glassCard} ${styles.cardBooking}`}
             >
               <h4 className="font-bold text-sm mb-3 text-[#0F172A]">
                 Booking Progress
               </h4>
-              <ul className="space-y-2 text-xs font-bold text-[#0F172A]/50">
-                <li className="flex items-center gap-2 text-[#0F172A]">
+              <ul className="space-y-2 text-xs font-bold text-[#0F172A]/70">
+                <li className="flex items-center gap-2">
                   <FiCheckCircle className="text-blue-600" /> Confirmed
                 </li>
-                <li className="flex items-center gap-2 text-[#0F172A]">
+                <li className="flex items-center gap-2">
                   <FiCheckCircle className="text-blue-600" /> Pick-up
                 </li>
                 <li className="flex items-center gap-2 text-blue-600 relative">
@@ -196,7 +198,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== 2. KENAPA HARUS CHUPATU? ==================== */}
+      {/* 2. KENAPA HARUS CHUPATU? */}
       <section className={styles.whyChupatuSection}>
         <div className={styles.whyContainer}>
           <motion.div
@@ -227,14 +229,14 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className={`${styles.whyParagraph} !text-white !font-black`}
+            className={`${styles.whyParagraph} !text-white !font-bold`}
           >
             Kami tangani sampai bersih maksimal tanpa bikin sepatu rusak.
           </motion.p>
         </div>
       </section>
 
-      {/* ==================== 3. LAYANAN UTAMA KAMI ==================== */}
+      {/* 3. LAYANAN */}
       <section className={styles.servicesSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
@@ -254,7 +256,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className={`${styles.serviceCard} group hover:bg-[#0F172A] hover:border-[#0F172A] hover:-translate-y-2`}
+                className={`${styles.serviceCard} group hover:bg-[#0F172A] hover:-translate-y-2 hover:shadow-2xl`}
               >
                 <div className="w-16 h-16 bg-white text-[#0F172A] rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   <srv.icon />
@@ -271,7 +273,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== 4. BENTO GRID HIGHLIGHTS ==================== */}
+      {/* 4. BENTO GRID */}
       <section className={styles.bentoSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.bentoGrid}>
@@ -279,13 +281,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`${styles.bentoCard} group hover:-translate-y-2 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-900/10`}
+              className={`${styles.bentoCard} group hover:-translate-y-2 hover:border-blue-300 hover:shadow-2xl`}
             >
               <div>
                 <h3 className="text-xl font-black mb-2 uppercase text-[#0F172A]">
                   Magic Result AI
                 </h3>
-                <p className="text-[#0F172A]/70 text-sm font-medium">
+                <p className="text-[#0F172A]/80 text-sm font-medium">
                   Analisis otomatis kerusakan dan material sepatu.
                 </p>
               </div>
@@ -304,7 +306,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className={`${styles.bentoCardDark} hover:scale-[1.02]`}
+              className={`${styles.bentoCardDark} hover:scale-[1.02] hover:shadow-2xl`}
             >
               <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-[#0F172A] to-[#0F172A]"></div>
               <div className="relative z-10 md:w-2/3 h-full flex flex-col justify-center">
@@ -314,7 +316,7 @@ export default function Home() {
                 <h3 className="text-3xl font-black mb-4 uppercase text-white">
                   Live Tracking Real-Time.
                 </h3>
-                <p className="text-blue-100/80 font-medium">
+                <p className="text-blue-100/90 font-medium">
                   Pantau pergerakan kurir secara langsung dengan akurasi tinggi
                   via integrasi Polyline Routing.
                 </p>
@@ -324,7 +326,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== 5. ICON STRIP SECTION ==================== */}
+      {/* 5. ICON STRIP */}
       <section className={styles.iconStripSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.iconGrid}>
@@ -335,7 +337,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`${styles.iconItem} group cursor-pointer`}
+                className="group flex flex-col items-center gap-3 cursor-pointer"
               >
                 <div
                   className={`${styles.iconBox} group-hover:bg-[#0F172A] group-hover:text-white group-hover:-translate-y-2`}
@@ -349,7 +351,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== 6. HOW IT WORKS ==================== */}
+      {/* 6. HOW IT WORKS */}
       <section className={styles.stepSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
@@ -361,10 +363,6 @@ export default function Home() {
             >
               Cara Kerja <span className="text-blue-600">Sistem Kami.</span>
             </motion.h2>
-            <p className={styles.sectionDesc}>
-              Empat langkah mudah untuk mengembalikan pesona sepatu kesayanganmu
-              melalui ekosistem digital Chupatu.
-            </p>
           </div>
           <div className={styles.stepGrid}>
             {howItWorks.map((step, index) => (
@@ -374,7 +372,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className={`${styles.stepCard} hover:-translate-y-2 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-900/10`}
+                className={`${styles.stepCard} hover:-translate-y-2 hover:border-blue-300 hover:shadow-xl`}
               >
                 <span className={styles.stepNumber}>{step.step}</span>
                 <div className="w-12 h-12 bg-[#0F172A] text-white rounded-xl flex items-center justify-center mb-6 relative z-10">
@@ -383,7 +381,7 @@ export default function Home() {
                 <h3 className="text-xl font-black text-[#0F172A] mb-3 relative z-10">
                   {step.title}
                 </h3>
-                <p className="text-sm text-[#0F172A]/70 leading-relaxed relative z-10 font-medium">
+                <p className="text-sm text-[#0F172A]/80 font-medium relative z-10">
                   {step.desc}
                 </p>
               </motion.div>
@@ -392,65 +390,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== 7. TESTIMONIAL ==================== */}
+      {/* 7. TESTIMONIAL */}
       <section className={styles.testimonialSection}>
         <div className={styles.sectionContainer}>
-          <div className="text-center">
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
               Apa Kata <span className="text-blue-400">Mereka?</span>
             </h2>
-            <p className="text-blue-200 text-lg">
-              Dipercaya oleh ribuan pecinta sepatu di seluruh Indonesia.
-            </p>
           </div>
           <div className={styles.testimonialGrid}>
-            <div className={styles.testimonialCard}>
-              <div className="flex text-amber-400 mb-4">
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
+            {[
+              {
+                name: "Bima, Sneakerhead",
+                text: "Fitur live trackingnya juara! Saya nggak perlu lagi was-was nungguin kurir datang ambil sepatu.",
+              },
+              {
+                name: "Sarah, Mahasiswi",
+                text: "Magic Result AI benar-benar pintar. Otomatis tahu kalau sepatu kulit saya butuh treatment khusus.",
+              },
+              {
+                name: "Reza, Pekerja Kantoran",
+                text: "Aplikasi paling rapi. Invoice PDF dan sistem barcodenya bikin ngerasa aman banget.",
+              },
+            ].map((testi, idx) => (
+              <div
+                key={idx}
+                className={`${styles.testimonialCard} hover:-translate-y-2`}
+              >
+                <div className="flex text-amber-400 mb-4">
+                  <FiStar className="fill-current" />
+                  <FiStar className="fill-current" />
+                  <FiStar className="fill-current" />
+                  <FiStar className="fill-current" />
+                  <FiStar className="fill-current" />
+                </div>
+                <p className="text-white/90 italic mb-6">"{testi.text}"</p>
+                <h4 className="font-bold text-white">— {testi.name}</h4>
               </div>
-              <p className="text-white/90 italic mb-6">
-                "Fitur live trackingnya juara! Saya nggak perlu lagi was-was
-                nungguin kurir datang ambil sepatu."
-              </p>
-              <h4 className="font-bold text-white">— Bima, Sneakerhead</h4>
-            </div>
-            <div className={styles.testimonialCard}>
-              <div className="flex text-amber-400 mb-4">
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-              </div>
-              <p className="text-white/90 italic mb-6">
-                "Magic Result AI benar-benar pintar. Otomatis tahu kalau sepatu
-                kulit saya butuh treatment khusus."
-              </p>
-              <h4 className="font-bold text-white">— Sarah, Mahasiswi</h4>
-            </div>
-            <div className={styles.testimonialCard}>
-              <div className="flex text-amber-400 mb-4">
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-              </div>
-              <p className="text-white/90 italic mb-6">
-                "Aplikasi paling rapi. Invoice PDF dan sistem barcodenya bikin
-                ngerasa aman banget."
-              </p>
-              <h4 className="font-bold text-white">— Reza, Pekerja Kantoran</h4>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ==================== 8. MASSIVE CTA ==================== */}
+      {/* 8. MASSIVE CTA */}
       <section className={styles.ctaSection}>
         <div className={styles.ctaGlow}></div>
         <div className={styles.ctaContainer}>
@@ -470,7 +452,7 @@ export default function Home() {
           >
             <Link href="/services">
               <button
-                className={`${styles.ctaBtn} hover:scale-105 hover:bg-slate-50`}
+                className={`${styles.ctaBtn} hover:scale-105 hover:bg-blue-50`}
               >
                 DOWNLOAD APLIKASI <FiArrowRight className="text-blue-600" />
               </button>
