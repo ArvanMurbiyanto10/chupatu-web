@@ -1,39 +1,126 @@
 @reference "../globals.css";
 
+/* 🔹 WRAPPER UTAMA */
 .wrapper {
-  @apply min-h-screen pt-32 pb-20 bg-white;
+  @apply bg-white min-h-screen pt-32 pb-24 relative selection:bg-[#D4AF37] selection:text-white;
 }
-
+.bgGlow {
+  @apply absolute top-0 right-0 w-[800px] h-[800px] bg-blue-50 rounded-full mix-blend-multiply filter blur-[120px] opacity-70 pointer-events-none z-0;
+}
 .container {
-  @apply container mx-auto px-6 md:px-12;
+  @apply container mx-auto px-6 md:px-12 relative z-10 max-w-[1300px];
 }
 
+/* 🔥 MAIN LAYOUT (ASYMMETRICAL) */
+.mainLayout {
+  @apply grid lg:grid-cols-12 gap-12 lg:gap-16 items-start;
+}
+
+/* 🔹 LEFT COLUMN (DAFTAR ARTIKEL) */
+.leftContent {
+  @apply lg:col-span-7 flex flex-col justify-center relative z-20 pb-20;
+}
+.badge {
+  @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0F4D92]/5 border border-[#0F4D92]/10 text-[#D4AF37] font-bold text-sm mb-6 uppercase tracking-widest w-max shadow-sm;
+}
 .title {
-  @apply text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center;
+  @apply text-5xl md:text-6xl lg:text-7xl font-black text-[#0F4D92] leading-[1.1] tracking-tighter mb-10;
 }
 
-/* 🔹 LIST ARTIKEL */
+/* 🔹 GRID & CARD ARTIKEL */
 .articleGrid {
-  @apply grid md:grid-cols-2 gap-6;
+  @apply flex flex-col gap-6;
 }
-
 .articleCard {
-  @apply p-6 bg-white rounded-2xl shadow-md border hover:shadow-lg transition cursor-pointer;
+  @apply flex flex-col sm:flex-row gap-6 p-6 rounded-[2rem] bg-white border border-blue-50 shadow-[0_15px_30px_rgba(15,77,146,0.04)] cursor-pointer transition-all duration-500;
 }
-
+.cardImage {
+  @apply w-full sm:w-40 h-48 sm:h-40 object-cover rounded-2xl shadow-inner border border-blue-50;
+}
+.articleText {
+  @apply flex-1 flex flex-col justify-center;
+}
 .articleTitle {
-  @apply text-xl font-semibold text-gray-800;
+  @apply text-2xl font-black text-[#0F4D92] mb-3 leading-snug transition-colors duration-300;
 }
-
 .articlePreview {
-  @apply text-gray-500 mt-2;
+  @apply mt-auto flex items-center gap-2 text-sm font-bold text-[#D4AF37] uppercase tracking-wider;
 }
 
-/* 🔹 DETAIL ARTIKEL */
+/* 🔹 RIGHT COLUMN (PREMIUM SIDEBAR) */
+.rightSidebar {
+  @apply lg:col-span-5 flex flex-col gap-8 relative z-20;
+}
+.stickySidebar {
+  @apply sticky top-32 flex flex-col gap-8;
+}
+
+/* Sidebar Elements */
+.sidebarBox {
+  @apply p-8 bg-white rounded-3xl border border-blue-50 shadow-[0_15px_30px_rgba(15,77,146,0.04)];
+}
+.sidebarTitle {
+  @apply text-xl font-black text-[#0F4D92] mb-6 flex items-center gap-3;
+}
+.searchInput {
+  @apply w-full bg-[#F8FAFC] border border-blue-100 px-5 py-4 rounded-2xl text-[#0F4D92] font-medium focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all;
+}
+.tagCloud {
+  @apply flex flex-wrap gap-3;
+}
+.tagItem {
+  @apply px-4 py-2 bg-blue-50 text-[#0F4D92] text-sm font-bold rounded-xl transition-colors cursor-pointer;
+}
+
+/* Promo Card CTA */
+.promoCard {
+  @apply p-8 bg-[#0F4D92] rounded-3xl border-2 border-[#D4AF37] shadow-2xl relative overflow-hidden;
+}
+.promoGlow {
+  @apply absolute -bottom-10 -right-10 w-40 h-40 bg-[#D4AF37]/30 rounded-full blur-[40px];
+}
+.promoTitle {
+  @apply text-2xl font-black text-white mb-3 relative z-10;
+}
+.promoDesc {
+  @apply text-blue-100 font-medium mb-6 relative z-10 text-sm leading-relaxed;
+}
+.promoBtn {
+  @apply w-full py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-black rounded-xl shadow-lg transition-transform relative z-10 flex justify-center items-center gap-2;
+}
+
+/* 🔥 DETAIL VIEW */
+.detailContainer {
+  @apply max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-[3rem] border border-blue-50 shadow-[0_20px_60px_rgba(15,77,146,0.05)] relative z-20;
+}
 .backButton {
-  @apply mb-6 inline-block text-blue-600 cursor-pointer hover:underline;
+  @apply inline-flex items-center gap-3 text-[#D4AF37] font-black uppercase tracking-widest text-sm mb-12 cursor-pointer transition-transform duration-300;
 }
-
+.detailTitle {
+  @apply text-4xl md:text-5xl lg:text-6xl font-black text-[#0F4D92] leading-tight mb-10 tracking-tighter;
+}
+.detailHeroImg {
+  @apply w-full h-[300px] md:h-[450px] object-cover rounded-[2rem] mb-12 shadow-2xl shadow-[#0F4D92]/10 border border-blue-50;
+}
 .articleContent {
-  @apply mt-4 text-gray-700 whitespace-pre-line leading-relaxed;
+  @apply text-lg md:text-xl text-[#0F4D92]/80 font-medium leading-relaxed whitespace-pre-line;
+}
+/* 🔥 BOTTOM CTA BANNER */
+.bottomCtaSection {
+  @apply container mx-auto px-6 md:px-12 mt-32 relative z-20 max-w-[1300px] pb-10;
+}
+.bottomCtaCard {
+  @apply bg-[#0F4D92] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden flex flex-col items-center border-4 border-[#D4AF37] shadow-2xl;
+}
+.bottomCtaGlow {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4AF37]/20 rounded-full blur-[100px] pointer-events-none;
+}
+.bottomCtaTitle {
+  @apply text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tighter relative z-10 leading-[1.1];
+}
+.bottomCtaDesc {
+  @apply text-lg md:text-xl text-blue-50 mb-10 max-w-2xl relative z-10 font-medium leading-relaxed;
+}
+.bottomCtaBtn {
+  @apply px-10 py-5 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-black rounded-full shadow-[0_15px_30px_rgba(212,175,55,0.3)] transition-transform duration-300 flex items-center gap-3 relative z-10 text-lg hover:scale-105;
 }
