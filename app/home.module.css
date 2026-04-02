@@ -2,7 +2,7 @@
 
 /* --- 1. GLOBAL WRAPPER & LAYOUT --- */
 .mainWrapper {
-  @apply bg-white min-h-screen overflow-hidden text-[#023e8a] selection:bg-[#023e8a] selection:text-white;
+  @apply bg-white min-h-screen overflow-hidden text-slate-800 selection:bg-cyan-500 selection:text-white;
 }
 .sectionContainer {
   @apply container mx-auto px-6 md:px-12 relative z-10;
@@ -10,28 +10,28 @@
 
 /* --- 2. HERO SECTION --- */
 .heroSection {
-  @apply relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-gradient-to-b from-white via-blue-50/50 to-white;
+  @apply relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-gradient-to-b from-white via-cyan-50/50 to-white;
 }
 .heroBgGlow {
-  @apply absolute top-1/2 right-0 w-[800px] h-[800px] bg-blue-100 rounded-full mix-blend-multiply filter blur-[150px] opacity-40 -translate-y-1/2;
+  @apply absolute top-1/2 right-0 w-[800px] h-[800px] bg-cyan-100 rounded-full mix-blend-multiply filter blur-[150px] opacity-40 -translate-y-1/2;
 }
 .heroGrid {
   @apply grid grid-cols-1 lg:grid-cols-2 gap-16 items-center;
 }
 .heroTitle {
-  @apply text-5xl md:text-7xl lg:text-[5.5rem] font-black text-[#023e8a] leading-[1.05] tracking-tighter mb-6 uppercase;
+  @apply text-5xl md:text-7xl lg:text-[5.5rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 leading-[1.05] tracking-tighter mb-6 uppercase;
 }
 .heroSubtitle {
-  @apply text-lg md:text-2xl text-[#0077b6]/80 mb-10 max-w-xl font-medium leading-relaxed;
+  @apply text-lg md:text-2xl text-slate-500 mb-10 max-w-xl font-medium leading-relaxed;
 }
 .btnGroup {
   @apply flex flex-col sm:flex-row gap-4;
 }
 .btnNavy {
-  @apply px-8 py-4 rounded-full bg-[#00b4d8] text-white font-bold text-lg shadow-xl shadow-[#00b4d8]/20 transition-all duration-300 flex items-center justify-center gap-2;
+  @apply px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-lg shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2;
 }
 .btnOutline {
-  @apply px-8 py-4 rounded-full bg-white border-2 border-[#00b4d8] text-[#00b4d8] font-bold text-lg transition-all duration-300 flex items-center justify-center;
+  @apply px-8 py-4 rounded-full bg-white border-2 border-cyan-500 text-cyan-600 font-bold text-lg hover:bg-cyan-50 transition-all duration-300 flex items-center justify-center;
 }
 
 /* --- 3. FLOATING MOCKUP ELEMENTS --- */
@@ -39,7 +39,7 @@
   @apply relative w-full h-[600px] flex justify-center items-center [perspective:1200px];
 }
 .mainPhone {
-  @apply relative w-[280px] h-[580px] bg-white rounded-[3rem] border-[8px] border-[#0077b6] shadow-2xl shadow-blue-900/20 overflow-hidden z-20;
+  @apply relative w-[280px] h-[580px] bg-white rounded-[3rem] border-[8px] border-blue-500 shadow-2xl shadow-cyan-900/20 overflow-hidden z-20;
 }
 .phoneScreen {
   @apply absolute inset-0 bg-white flex flex-col;
@@ -56,19 +56,19 @@
 
 /* --- 4. WHY CHUPATU SECTION --- */
 .whyChupatuSection {
-  @apply py-24 relative z-20 bg-[#0077b6] text-white border-y border-blue-900 shadow-2xl;
+  @apply py-24 relative z-20 bg-gradient-to-r from-blue-600 to-cyan-500 text-white border-y border-blue-400 shadow-2xl;
 }
 .whyContainer {
   @apply container mx-auto px-6 md:px-12 flex flex-col items-center text-center;
 }
 .whyBadge {
-  @apply inline-flex px-6 py-2 rounded-full border border-blue-400/30 bg-blue-900/50 text-blue-200 font-bold mb-8 uppercase tracking-widest text-sm shadow-inner;
+  @apply inline-flex px-6 py-2 rounded-full border border-white/30 bg-white/10 text-white font-bold mb-8 uppercase tracking-widest text-sm shadow-inner;
 }
 .whyParagraph {
-  @apply text-xl md:text-2xl text-blue-100 leading-relaxed font-light max-w-4xl mb-6;
+  @apply text-xl md:text-2xl text-blue-50 leading-relaxed font-light max-w-4xl mb-6;
 }
 .whyHighlight {
-  @apply text-white font-bold bg-blue-800/50 px-2 rounded-md;
+  @apply text-white font-bold bg-white/20 px-2 rounded-md;
 }
 
 /* --- 5. LAYANAN SECTION --- */
@@ -79,30 +79,30 @@
   @apply text-center mb-16;
 }
 .sectionTitle {
-  @apply text-4xl md:text-5xl font-black text-[#0077b6] mb-4;
+  @apply text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-4;
 }
 .sectionDesc {
-  @apply text-lg text-[#0077b6]/70 max-w-2xl mx-auto;
+  @apply text-lg text-slate-500 max-w-2xl mx-auto;
 }
 .servicesGrid {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
 }
 .serviceCard {
-  @apply p-8 rounded-3xl bg-blue-50/50 border border-blue-100 transition-all duration-500 flex flex-col items-center text-center cursor-pointer;
+  @apply p-8 rounded-3xl bg-blue-50/50 border border-blue-100 hover:border-cyan-300 transition-all duration-500 flex flex-col items-center text-center cursor-pointer;
 }
 
 /* --- 6. BENTO GRID --- */
 .bentoSection {
-  @apply py-24 bg-blue-50/30 relative z-20;
+  @apply py-24 bg-slate-50/50 relative z-20;
 }
 .bentoGrid {
   @apply grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px];
 }
 .bentoCard {
-  @apply bg-white rounded-3xl p-8 border border-blue-100 shadow-xl shadow-blue-900/5 relative overflow-hidden flex flex-col justify-between transition-all duration-300;
+  @apply bg-white rounded-3xl p-8 border border-blue-100 shadow-xl shadow-cyan-900/5 relative overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-cyan-900/10;
 }
 .bentoCardDark {
-  @apply bg-[#0077b6] rounded-3xl p-8 border border-blue-900 shadow-xl shadow-[#0077b6]/30 relative overflow-hidden flex flex-col justify-between text-white transition-all duration-300 md:col-span-2;
+  @apply bg-gradient-to-br from-blue-600 to-cyan-500 rounded-3xl p-8 border border-cyan-400 shadow-xl shadow-cyan-500/30 relative overflow-hidden flex flex-col justify-between text-white transition-all duration-300 md:col-span-2 hover:scale-[1.02];
 }
 
 /* --- 7. ICON STRIP --- */
@@ -116,10 +116,10 @@
   @apply flex flex-col items-center gap-3;
 }
 .iconBox {
-  @apply w-16 h-16 rounded-2xl bg-blue-50 text-[#0077b6] flex items-center justify-center text-2xl shadow-inner border border-blue-100 transition-all duration-300;
+  @apply w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center text-2xl shadow-inner border border-transparent transition-all duration-300;
 }
 .iconLabel {
-  @apply text-sm font-black text-[#0077b6] uppercase tracking-wide;
+  @apply text-sm font-black text-cyan-600 uppercase tracking-wide;
 }
 
 /* --- 8. HOW IT WORKS --- */
@@ -130,26 +130,26 @@
   @apply grid grid-cols-1 md:grid-cols-4 gap-8 relative;
 }
 .stepCard {
-  @apply relative p-8 bg-blue-50/50 rounded-3xl border border-blue-100 transition-all duration-300;
+  @apply relative p-8 bg-blue-50/50 rounded-3xl border border-cyan-100 transition-all duration-300 hover:border-cyan-400;
 }
 .stepNumber {
-  @apply text-6xl font-black text-blue-200 absolute top-4 right-6 opacity-40;
+  @apply text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-cyan-500 absolute top-4 right-6 opacity-20;
 }
 
 /* --- 9. TESTIMONIAL --- */
 .testimonialSection {
-  @apply py-32 bg-[#0077b6] text-white relative overflow-hidden;
+  @apply py-32 bg-gradient-to-r from-blue-600 to-cyan-500 text-white relative overflow-hidden;
 }
 .testimonialGrid {
   @apply grid grid-cols-1 md:grid-cols-3 gap-8 mt-16;
 }
 .testimonialCard {
-  @apply bg-blue-900/30 p-8 rounded-3xl border border-blue-800 backdrop-blur-sm transition-transform duration-300;
+  @apply bg-white/10 p-8 rounded-3xl border border-white/20 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-2;
 }
 
 /* --- 10. CTA --- */
 .ctaSection {
-  @apply py-32 bg-blue-600 relative overflow-hidden;
+  @apply py-32 bg-gradient-to-r from-blue-600 to-cyan-500 relative overflow-hidden;
 }
 .ctaGlow {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/20 rounded-full blur-[120px];
@@ -161,5 +161,5 @@
   @apply text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter;
 }
 .ctaBtn {
-  @apply px-10 py-5 bg-white text-[#0077b6] rounded-full font-black text-xl shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all duration-300 inline-flex items-center gap-3;
+  @apply px-10 py-5 bg-white text-blue-600 hover:text-cyan-500 rounded-full font-black text-xl shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 inline-flex items-center gap-3;
 }
