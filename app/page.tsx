@@ -147,11 +147,11 @@ export default function Home() {
             >
               <div className={styles.phoneScreen}>
                 <div className="bg-white px-4 pt-12 pb-4 border-b border-blue-50 flex items-center justify-between z-10">
-                  <FiChevronRight className="rotate-180 text-xl text-[#0F172A]" />
-                  <h3 className="font-bold text-sm text-[#0F172A]">
+                  <FiChevronRight className="rotate-180 text-xl text-[0077b6]" />
+                  <h3 className="font-bold text-sm text-[0077b6]">
                     Live Tracking
                   </h3>
-                  <FiShield className="text-[#0F172A]" />
+                  <FiShield className="text-[0077b6]" />
                 </div>
                 <div className="flex-1 bg-blue-50 relative overflow-hidden">
                   <svg
@@ -161,13 +161,13 @@ export default function Home() {
                     <path
                       d="M 50 100 Q 150 150 200 300 T 150 450"
                       fill="transparent"
-                      stroke="#0F172A"
+                      stroke="0077b6"
                       strokeWidth="4"
                       strokeDasharray="8 8"
                       className="animate-pulse"
                     />
                   </svg>
-                  <div className="absolute top-[280px] left-[180px] w-10 h-10 bg-[#0F172A] rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
+                  <div className="absolute top-[280px] left-[180px] w-10 h-10 bg-[0077b6] rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
                     <FiMap />
                   </div>
                 </div>
@@ -178,10 +178,10 @@ export default function Home() {
               transition={{ repeat: Infinity, duration: 4 }}
               className={`${styles.glassCard} ${styles.cardBooking}`}
             >
-              <h4 className="font-bold text-sm mb-3 text-[#0F172A]">
+              <h4 className="font-bold text-sm mb-3 text-[0077b6]">
                 Booking Progress
               </h4>
-              <ul className="space-y-2 text-xs font-bold text-[#0F172A]/70">
+              <ul className="space-y-2 text-xs font-bold text-[0077b6]/70">
                 <li className="flex items-center gap-2">
                   <FiCheckCircle className="text-blue-600" /> Confirmed
                 </li>
@@ -256,15 +256,15 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className={`${styles.serviceCard} group hover:bg-[#0F172A] hover:-translate-y-2 hover:shadow-2xl`}
+                className={`${styles.serviceCard} group hover:bg-[0077b6] hover:-translate-y-2 hover:shadow-2xl`}
               >
-                <div className="w-16 h-16 bg-white text-[#0F172A] rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <div className="w-16 h-16 bg-white text-[0077b6] rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   <srv.icon />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-[#0F172A] group-hover:text-white transition-colors">
+                <h3 className="text-xl font-bold mb-3 text-[0077b6] group-hover:text-white transition-colors">
                   {srv.title}
                 </h3>
-                <p className="text-[#0F172A]/70 font-medium group-hover:text-blue-100 transition-colors">
+                <p className="text-[0077b6]/70 font-medium group-hover:text-blue-100 transition-colors">
                   {srv.desc}
                 </p>
               </motion.div>
@@ -284,10 +284,10 @@ export default function Home() {
               className={`${styles.bentoCard} group hover:-translate-y-2 hover:border-blue-300 hover:shadow-2xl`}
             >
               <div>
-                <h3 className="text-xl font-black mb-2 uppercase text-[#0F172A]">
+                <h3 className="text-xl font-black mb-2 uppercase text-[0077b6]">
                   Magic Result AI
                 </h3>
-                <p className="text-[#0F172A]/80 text-sm font-medium">
+                <p className="text-[0077b6]/80 text-sm font-medium">
                   Analisis otomatis kerusakan dan material sepatu.
                 </p>
               </div>
@@ -295,7 +295,7 @@ export default function Home() {
                 <span className="font-bold text-blue-700 flex items-center gap-1">
                   <FiCpu /> Gemini Engine
                 </span>
-                <span className="w-12 h-12 bg-[#0F172A] rounded-xl flex items-center justify-center text-white">
+                <span className="w-12 h-12 bg-[0077b6] rounded-xl flex items-center justify-center text-white">
                   <FiZap />
                 </span>
               </div>
@@ -308,7 +308,7 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className={`${styles.bentoCardDark} hover:scale-[1.02] hover:shadow-2xl`}
             >
-              <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-[#0F172A] to-[#0F172A]"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-[0077b6] to-[0077b6]"></div>
               <div className="relative z-10 md:w-2/3 h-full flex flex-col justify-center">
                 <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg">
                   <FiMap />
@@ -340,7 +340,7 @@ export default function Home() {
                 className="group flex flex-col items-center gap-3 cursor-pointer"
               >
                 <div
-                  className={`${styles.iconBox} group-hover:bg-[#0F172A] group-hover:text-white group-hover:-translate-y-2`}
+                  className={`${styles.iconBox} group-hover:bg-[0077b6] group-hover:text-white group-hover:-translate-y-2`}
                 >
                   <item.icon />
                 </div>
@@ -375,13 +375,13 @@ export default function Home() {
                 className={`${styles.stepCard} hover:-translate-y-2 hover:border-blue-300 hover:shadow-xl`}
               >
                 <span className={styles.stepNumber}>{step.step}</span>
-                <div className="w-12 h-12 bg-[#0F172A] text-white rounded-xl flex items-center justify-center mb-6 relative z-10">
+                <div className="w-12 h-12 bg-[0077b6] text-white rounded-xl flex items-center justify-center mb-6 relative z-10">
                   <FiCheckCircle size={24} />
                 </div>
-                <h3 className="text-xl font-black text-[#0F172A] mb-3 relative z-10">
+                <h3 className="text-xl font-black text-[0077b6] mb-3 relative z-10">
                   {step.title}
                 </h3>
-                <p className="text-sm text-[#0F172A]/80 font-medium relative z-10">
+                <p className="text-sm text-[0077b6]/80 font-medium relative z-10">
                   {step.desc}
                 </p>
               </motion.div>
