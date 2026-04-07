@@ -285,7 +285,7 @@ export default function Home() {
             >
               <div>
                 <h3 className="text-xl font-black mb-2 uppercase text-[#0F172A]">
-                  Magic Result AI
+                  Magic Result AI 
                 </h3>
                 <p className="text-[#0F172A]/80 text-sm font-medium">
                   Analisis otomatis kerusakan dan material sepatu.
