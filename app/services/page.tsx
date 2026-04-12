@@ -86,6 +86,26 @@ export default function ServicesPage() {
 
   const activeData = servicesData[activeService];
 
+  // Variants untuk animasi Staggered Header
+  const headerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const headerItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, type: "spring", bounce: 0.3 },
+    },
+  };
+
   return (
     <div className={styles.wrapper}>
       {/* Background Ambience (Tema Terang) */}
@@ -94,50 +114,90 @@ export default function ServicesPage() {
 
       <div className={styles.container}>
         {/* ========================================= */}
-        {/* HEADER SECTION */}
+        {/* HEADER SECTION (EDITORIAL PREMIUM) */}
         {/* ========================================= */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 relative z-10 pt-10">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
+            variants={headerContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl"
           >
-            <span className="text-blue-600 font-black tracking-widest uppercase text-sm mb-4 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-              LAYANAN KAMI
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-              Perawatan Sepatu <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                Level Premium.
+            {/* Badge Estetik */}
+            <motion.div variants={headerItemVariants}>
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 text-blue-700 text-xs md:text-sm font-black mb-8 shadow-sm tracking-widest uppercase">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                </span>
+                CHUPATU SERVICES
+              </div>
+            </motion.div>
+
+            {/* Judul Utama dengan Swoosh Underline */}
+            <motion.h1
+              variants={headerItemVariants}
+              className="text-5xl md:text-6xl lg:text-[4.5rem] text-[#0F172A] mb-8 tracking-tighter leading-[1.05]"
+            >
+              <span className="font-extrabold block mb-1">
+                Perawatan Sepatu
               </span>
-            </h1>
-            <p className="text-lg text-slate-600 max-w-xl font-medium">
+              <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400 relative inline-block pb-2 pr-4">
+                Level Premium.
+                {/* SVG Garis Lengkung di bawah teks */}
+                <svg
+                  className="absolute w-full h-4 -bottom-1 left-0 text-cyan-400/40"
+                  viewBox="0 0 100 10"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0 8 Q 50 0 100 8"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </motion.h1>
+
+            {/* Deskripsi dengan gaya Editorial (Garis Kiri) */}
+            <motion.p
+              variants={headerItemVariants}
+              className="text-lg md:text-xl text-slate-600 font-medium leading-relaxed border-l-4 border-cyan-400 pl-5 py-1"
+            >
               Pilih menu perawatan yang didesain khusus untuk mengembalikan
               kondisi prima sepatu kesayangan Anda.
-            </p>
+            </motion.p>
           </motion.div>
 
-          {/* Tombol Navigasi (Disembunyikan jika Panel Detail Terbuka) */}
+          {/* Tombol Navigasi Slider */}
           <AnimatePresence>
             {!showDetail && (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="hidden md:flex gap-4"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                className="hidden md:flex gap-4 pb-2"
               >
                 <button
                   onClick={handlePrev}
-                  className="w-14 h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 shadow-sm bg-white"
+                  className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 bg-white group"
                 >
-                  <FiChevronLeft size={24} />
+                  <FiChevronLeft
+                    size={28}
+                    className="group-hover:-translate-x-1 transition-transform"
+                  />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="w-14 h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 shadow-sm bg-white"
+                  className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 bg-white group"
                 >
-                  <FiChevronRight size={24} />
+                  <FiChevronRight
+                    size={28}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </button>
               </motion.div>
             )}
@@ -147,16 +207,19 @@ export default function ServicesPage() {
         {/* ========================================= */}
         {/* INTERACTIVE LAYOUT (GALLERY & DETAIL) */}
         {/* ========================================= */}
-        <div className="flex flex-col lg:flex-row gap-6 w-full h-[70vh] min-h-[550px] max-h-[800px] relative z-10">
-          {/* BAGIAN KIRI: KARTU ANIMASI (Morphing Layout) */}
+        {/* Tambahkan mb-20 agar tidak terlalu mepet ke footer saat di-scroll sampai bawah */}
+        <div className="flex flex-col lg:flex-row gap-6 w-full h-[70vh] min-h-[550px] max-h-[800px] relative z-10 mb-20">
+          {/* BAGIAN KIRI: KARTU ANIMASI */}
           <motion.div
             layout
-            className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] h-full ${showDetail ? "w-full lg:w-[60%]" : "w-full flex flex-col lg:flex-row gap-4"}`}
+            className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] h-full ${
+              showDetail
+                ? "w-full lg:w-[calc(60%-12px)] shrink-0"
+                : "w-full flex flex-col lg:flex-row gap-4"
+            }`}
           >
             {!showDetail ? (
-              // -----------------------------------------------------
-              // STATE 1: MODE GALERI (4 KARTU BERDAMPINGAN)
-              // -----------------------------------------------------
+              // STATE 1: MODE GALERI
               servicesData.map((srv, idx) => {
                 const isActive = activeService === idx;
                 return (
@@ -173,12 +236,10 @@ export default function ServicesPage() {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
                     />
 
-                    {/* Overlay Hitam Halus */}
                     <div
                       className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90" : "bg-slate-900/60 group-hover:bg-slate-900/40"}`}
                     ></div>
 
-                    {/* Teks di dalam Kartu Galeri */}
                     <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end w-full h-full">
                       {isActive ? (
                         <motion.div
@@ -221,54 +282,52 @@ export default function ServicesPage() {
                 );
               })
             ) : (
-              // -----------------------------------------------------
-              // STATE 2: MODE FOKUS (1 GAMBAR BESAR + 3 THUMBNAIL)
-              // -----------------------------------------------------
+              // STATE 2: MODE FOKUS
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl bg-slate-900">
-                {/* Gambar Utama (Aktif) menggunakan Morphing Layout Cerdas */}
-                <motion.div
-                  key={`main-${activeData.id}`}
-                  layoutId={`wrapper-${activeData.id}`}
-                  className="absolute inset-0 z-0"
-                >
-                  <motion.img
-                    layoutId={`image-${activeData.id}`}
-                    src={activeData.img}
-                    alt={activeData.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`main-${activeData.id}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute inset-0 z-0"
+                  >
+                    <img
+                      src={activeData.img}
+                      alt={activeData.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
 
-                  {/* Teks Judul di Sudut Kiri Bawah Gambar Besar */}
-                  <div className="absolute bottom-8 left-8 max-w-[60%]">
-                    <span className="text-cyan-400 font-bold tracking-widest text-sm mb-2 block drop-shadow-md">
-                      CHUPATU SERVICE
-                    </span>
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase drop-shadow-lg leading-[1.1]">
-                      {activeData.title}
-                    </h3>
-                  </div>
-                </motion.div>
+                    <div className="absolute bottom-8 left-8 max-w-[60%]">
+                      <span className="text-cyan-400 font-bold tracking-widest text-sm mb-2 block drop-shadow-md">
+                        CHUPATU SERVICE
+                      </span>
+                      <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase drop-shadow-lg leading-[1.1]">
+                        {activeData.title}
+                      </h3>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
 
-                {/* 3 Gambar Lainnya Menjadi Thumbnail di Sudut Kanan Bawah */}
+                {/* Thumbnail Gambar Sisanya */}
                 <div className="absolute bottom-8 right-8 flex gap-3 z-20">
                   {servicesData.map((srv, idx) => {
-                    if (idx === activeService) return null; // Sembunyikan gambar aktif dari daftar thumbnail
+                    if (idx === activeService) return null;
                     return (
                       <motion.div
                         key={`thumb-${srv.id}`}
-                        layoutId={`wrapper-${srv.id}`}
                         onClick={() => setActiveService(idx)}
                         className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden cursor-pointer border-2 border-white/40 hover:border-white shadow-xl group relative"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <motion.img
-                          layoutId={`image-${srv.id}`}
+                        <img
                           src={srv.img}
                           className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform"
+                          alt={srv.title}
                         />
-                        {/* Lapisan Gelap Transparan pada Thumbnail */}
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors"></div>
                       </motion.div>
                     );
@@ -282,13 +341,12 @@ export default function ServicesPage() {
           <AnimatePresence>
             {showDetail && (
               <motion.div
-                initial={{ opacity: 0, x: 50, width: "0%" }}
-                animate={{ opacity: 1, x: 0, width: "100%" }}
-                exit={{ opacity: 0, x: 50, width: "0%" }}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 50 }}
                 transition={{ duration: 0.6, type: "spring", bounce: 0.2 }}
-                className="lg:w-[40%] h-full bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col relative overflow-hidden"
+                className="w-full lg:w-[calc(40%-12px)] shrink-0 h-full bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col relative overflow-hidden"
               >
-                {/* Tombol X untuk menutup */}
                 <button
                   onClick={() => setShowDetail(false)}
                   className="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-red-100 hover:text-red-600 transition-colors z-20"
@@ -296,13 +354,11 @@ export default function ServicesPage() {
                   <FiX size={20} />
                 </button>
 
-                {/* Isi Panel Detail */}
                 <div className="p-8 md:p-10 flex-1 overflow-y-auto custom-scrollbar pt-14 pb-14">
                   <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 font-black tracking-widest text-xs mb-6">
                     SERVICE INFO
                   </span>
 
-                  {/* Animasi per-gantian teks di panel */}
                   <motion.div
                     key={`content-${activeData.id}`}
                     initial={{ opacity: 0, y: 10 }}
@@ -316,7 +372,6 @@ export default function ServicesPage() {
                       {activeData.desc}
                     </p>
 
-                    {/* Harga Layanan */}
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 mb-8">
                       <span className="text-sm text-slate-500 font-medium block mb-1 uppercase tracking-widest">
                         Estimasi Biaya
@@ -326,7 +381,6 @@ export default function ServicesPage() {
                       </span>
                     </div>
 
-                    {/* Daftar Penjelasan & Fitur */}
                     <h4 className="font-bold text-slate-900 mb-5 flex items-center gap-2 text-lg">
                       <FiShield className="text-cyan-500" /> Rincian Pengerjaan
                     </h4>

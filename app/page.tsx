@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import {
@@ -91,6 +96,28 @@ const servicesData = [
   },
 ];
 
+// DATA BARU: Data Foto Before-After
+const magicResultsData = [
+  {
+    id: 1,
+    label: "Oksidasi Midsole",
+    before: "/images/beforephoto1.jpeg",
+    after: "/images/afterphoto1.jpeg",
+  },
+  {
+    id: 2,
+    label: "Restorasi Warna",
+    before: "/images/beforephoto2.jpeg",
+    after: "/images/afterphoto2.jpeg",
+  },
+  {
+    id: 3,
+    label: "Kasus Noda Berat",
+    before: "/images/beforephoto3.jpeg",
+    after: "/images/afterphoto3.jpeg",
+  },
+];
+
 export default function Home() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -102,16 +129,13 @@ export default function Home() {
   const yText = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacityHero = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // State untuk Magic Result Slider (Before/After)
+  // State untuk Magic Result Slider
   const [sliderPos, setSliderPos] = useState(50);
+  const [activeMagicResult, setActiveMagicResult] = useState(0);
 
   // Link Google Drive Aplikasi Chupatu
   const appDownloadLink =
     "https://drive.usercontent.google.com/download?id=1qFRCiwx-w7gygMkrSIL_8G8ZZTePX5PW&export=download&authuser=0";
-
-  // URL Gambar Sepatu untuk Slider
-  const shoeImageUrl =
-    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80";
 
   return (
     <div ref={containerRef} className={styles.mainWrapper}>
@@ -120,11 +144,8 @@ export default function Home() {
         className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: "url('/images/laundry-sepatu.jpg')" }}
       >
-        {/* Overlay Gelap di sisi Kiri (agar teks terbaca) memudar ke transparan di sisi Kanan */}
         <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#070B14]/90 via-[#070B14]/70 to-transparent"></div>
-        {/* Lapis bayangan dasar agar foto tidak terlalu menyilaukan */}
         <div className="absolute inset-0 bg-[#070B14]/20 z-0"></div>
-        {/* Gradasi bawah agar menyatu mulus dengan section berikutnya */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#070B14] z-0"></div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -174,7 +195,6 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
               >
-                {/* Tombol Unduh ke Google Drive */}
                 <button
                   onClick={() => window.open(appDownloadLink, "_blank")}
                   className="px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-base md:text-lg shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 w-full sm:w-auto"
@@ -195,10 +215,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. KENAPA LAUNDRY SEPATU DI CHUPATU? */}
+      {/* ========================================================= */}
+      {/* 2. KENAPA LAUNDRY SEPATU DI CHUPATU? (DENGAN ANIMASI PREMIUM) */}
+      {/* ========================================================= */}
       <section className="py-32 bg-slate-50 relative z-20 -mt-16 rounded-t-[4rem] shadow-[0_-20px_50px_rgba(0,0,0,0.05)] border-t border-white/50">
         <div className={styles.sectionContainer}>
-          {/* Animasi Header Section */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,7 +239,6 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Animasi Container Induk untuk Staggering */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -227,39 +247,57 @@ export default function Home() {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: {
-                  staggerChildren: 0.2,
-                },
+                transition: { staggerChildren: 0.2 },
               },
             }}
             className="grid md:grid-cols-3 gap-8"
           >
             {whyUsData.map((item, i) => (
               <motion.div
-                key={i} 
+                key={i}
                 variants={{
-                  hidden: { opacity: 0, y: 80, scale: 0.85 },
+                  hidden: { opacity: 0, y: 50, scale: 0.9 },
                   visible: {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    transition: { type: "spring", bounce: 0.5, duration: 0.8 },
+                    transition: { type: "spring", bounce: 0.4, duration: 0.8 },
                   },
                 }}
-                className={`group ${styles.glassCard} hover:border-blue-200 cursor-pointer`}
+                whileHover={{ y: -15, scale: 1.02 }}
+                // Desain kartu di-update dengan Tailwind murni agar efek spesifiknya jalan sempurna
+                className="group relative p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 transition-all duration-300 z-10 overflow-hidden cursor-default"
               >
-                <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 shadow-lg shadow-blue-500/30 transform -rotate-6 group-hover:rotate-0 group-hover:scale-110 transition-all duration-300">
-                  <item.icon />
+                {/* Dynamic Background Gradient pada Hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Animated Glowing Orb di belakang Ikon */}
+                <div className="absolute top-10 left-10 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:scale-150"></div>
+
+                <div className="relative z-20">
+                  {/* Ikon Box Animasi */}
+                  <motion.div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-8 shadow-lg shadow-blue-500/30 transform transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-cyan-400 group-hover:rotate-6 group-hover:scale-110">
+                    <item.icon />
+                  </motion.div>
+
+                  {/* Teks */}
+                  <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed font-medium group-hover:text-slate-700 transition-colors duration-300">
+                    {item.desc}
+                  </p>
+
+                  {/* Animated Progress Bar Decor */}
+                  <div className="mt-8 w-12 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="w-full h-full bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-4">
-                  {item.title} 
-                </h3>
-                <p className="text-slate-600 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
-      </section>  
+      </section>
 
       {/* 3. PREVIEW LIVE TRACKING */}
       <section className="py-32 bg-white relative overflow-hidden border-t border-slate-100">
@@ -267,7 +305,6 @@ export default function Home() {
 
         <div className={styles.sectionContainer}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Teks Penjelasan Kiri */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -399,7 +436,6 @@ export default function Home() {
                       <FiTarget className="text-white w-3 h-3" />
                     </div>
 
-                    {/* Ikon Kurir */}
                     <motion.div
                       className="absolute w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl border border-slate-100 z-20"
                       animate={{
@@ -571,12 +607,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. MAGIC RESULT (BEFORE / AFTER SLIDER) */}
+      {/* ========================================================= */}
+      {/* 6. MAGIC RESULT (DENGAN TABS DAN FOTO ASLI) */}
+      {/* ========================================================= */}
       <section className="py-32 bg-slate-900 relative overflow-hidden border-y border-slate-800">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-blue-600/30 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div className={styles.sectionContainer}>
-          <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-10 relative z-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -588,10 +626,27 @@ export default function Home() {
                 Result.
               </span>
             </motion.h2>
-            <p className="text-lg text-slate-300">
-              Geser garis di bawah untuk melihat perbedaan nyata kotoran
-              membandel sebelum dan sesudah perawatan ahli kami.
+            <p className="text-lg text-slate-300 mb-8">
+              Geser garis untuk melihat perbedaan nyata kotoran membandel
+              sebelum dan sesudah perawatan ahli kami.
             </p>
+
+            {/* TAB SELEKTOR KASUS */}
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
+              {magicResultsData.map((item, idx) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveMagicResult(idx)}
+                  className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 border ${
+                    activeMagicResult === idx
+                      ? "bg-blue-600 border-blue-500 text-white shadow-[0_0_15px_rgba(37,99,235,0.5)]"
+                      : "bg-slate-800/50 border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <motion.div
@@ -599,45 +654,61 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative w-full max-w-5xl mx-auto h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(37,99,235,0.3)] border-[6px] border-slate-800 group"
+            className="relative w-full max-w-5xl mx-auto h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(37,99,235,0.3)] border-[6px] border-slate-800 group bg-slate-900"
           >
-            <div className="absolute inset-0 bg-slate-200">
-              <img
-                src={shoeImageUrl}
-                className="w-full h-full object-cover filter brightness-[0.6] sepia-[0.4] contrast-[1.2] grayscale-[0.3]"
-                alt="Sepatu Kotor"
-              />
-              <div className="absolute top-6 left-6 bg-slate-900/80 backdrop-blur-md text-white px-6 py-2 rounded-full font-black tracking-wider text-sm shadow-xl border border-white/10">
-                KOTOR (BEFORE)
-              </div>
-            </div>
+            {/* Animasi Transisi antar Tab */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeMagicResult}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0"
+              >
+                {/* GAMBAR BEFORE (LAPISAN BAWAH) */}
+                <div className="absolute inset-0">
+                  <img
+                    src={magicResultsData[activeMagicResult].before}
+                    className="w-full h-full object-cover"
+                    alt="Sebelum Perawatan"
+                  />
+                  <div className="absolute top-6 left-6 bg-slate-900/80 backdrop-blur-md text-white px-6 py-2 rounded-full font-black tracking-wider text-sm shadow-xl border border-white/10 z-10">
+                    BEFORE
+                  </div>
+                </div>
 
-            <div
-              className="absolute inset-0 bg-white"
-              style={{
-                clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`,
-              }}
-            >
-              <img
-                src={shoeImageUrl}
-                className="w-full h-full object-cover"
-                alt="Sepatu Bersih"
-              />
-              <div className="absolute top-6 right-6 bg-blue-600/90 backdrop-blur-md text-white px-6 py-2 rounded-full font-black tracking-wider text-sm shadow-xl border border-white/20">
-                BERSIH (AFTER)
-              </div>
-            </div>
+                {/* GAMBAR AFTER (LAPISAN ATAS DENGAN CLIP PATH) */}
+                <div
+                  className="absolute inset-0 z-10"
+                  style={{
+                    clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`,
+                  }}
+                >
+                  <img
+                    src={magicResultsData[activeMagicResult].after}
+                    className="w-full h-full object-cover"
+                    alt="Sesudah Perawatan"
+                  />
+                  <div className="absolute top-6 right-6 bg-blue-600/90 backdrop-blur-md text-white px-6 py-2 rounded-full font-black tracking-wider text-sm shadow-xl border border-white/20">
+                    AFTER
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
+            {/* GARIS PEMBATAS (SLIDER HANDLE) */}
             <div
-              className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_15px_rgba(0,0,0,0.8)] z-20"
-              style={{ left: `calc(${sliderPos}% - 2px)` }}
+              className="absolute top-0 bottom-0 w-1.5 bg-white cursor-ew-resize shadow-[0_0_20px_rgba(0,0,0,0.9)] z-20 pointer-events-none"
+              style={{ left: `calc(${sliderPos}% - 3px)` }}
             >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center text-blue-600 border-4 border-slate-100 transition-transform group-hover:scale-110">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center text-blue-600 border-4 border-slate-200 transition-transform group-hover:scale-110">
                 <FiChevronLeft size={24} className="-mr-1" />
                 <FiChevronRight size={24} className="-ml-1" />
               </div>
             </div>
 
+            {/* INPUT RANGE INVISIBLE UNTUK MENGGESER */}
             <input
               type="range"
               min="0"

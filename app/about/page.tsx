@@ -96,19 +96,32 @@ export default function AboutPage() {
           viewport={{ once: true, margin: "-100px" }}
           className={styles.visiMisiGrid}
         >
-          {/* Visi Card */}
+          {/* Visi Card - DENGAN BACKGROUND LOGO */}
           <motion.div
             variants={itemVariants}
-            className={`${styles.cardVisiMisi} md:col-span-2 bg-[#0F172A] text-white relative group`}
+            className={`${styles.cardVisiMisi} md:col-span-2 bg-[#0F172A] text-white relative group overflow-hidden`}
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[60px] group-hover:bg-blue-500/20 transition-all duration-500"></div>
+            {/* PERBAIKAN: Background Logo "chupatu-inc.png" yang lebih jelas */}
+            <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+              <img
+                src="/images/chupatu-inc.jpg"
+                alt="Logo Chupatu"
+                // Menggunakan object-contain agar logo proporsional, dan opacity dinaikkan
+                className="w-[80%] h-[80%] object-contain opacity-20 md:opacity-30 group-hover:scale-105 transition-transform duration-700 filter drop-shadow-2xl"
+              />
+              {/* Gradasi dipindah agar tidak menutupi tengah logo */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-[#0F172A]/30"></div>
+            </div>
+
             <div className="relative z-10 flex flex-col h-full justify-between">
               <div className={`${styles.visiIcon}`}>
                 <FiTrendingUp />
               </div>
               <div>
-                <h2 className={`${styles.visiTitle} text-white`}>Visi Kami.</h2>
-                <p className="text-xl md:text-2xl text-blue-100/80 leading-relaxed font-light max-w-2xl">
+                <h2 className={`${styles.visiTitle} text-white drop-shadow-md`}>
+                  Visi Kami.
+                </h2>
+                <p className="text-xl md:text-2xl text-blue-50/90 leading-relaxed font-light max-w-2xl drop-shadow-md">
                   Menjadi pionir digitalisasi layanan perawatan sepatu di
                   Indonesia melalui integrasi teknologi AI dan IoT, menciptakan
                   standar baru dalam kenyamanan dan kepuasan pelanggan.
@@ -148,16 +161,18 @@ export default function AboutPage() {
           transition={{ duration: 0.7 }}
           className={styles.problemSolutionSection}
         >
-          <div className={styles.problemSolutionGlow}></div>
           <div className={styles.storyGrid}>
-            {/* Visual Kiri */}
+            {/* Visual Kiri - DENGAN BACKGROUND SYSTEM */}
             <div className={styles.imagePlaceholder}>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550009158-9effb64fda70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-40 mix-blend-overlay rounded-[2.5rem]"></div>
-              <div className="relative z-10 flex flex-col items-center">
-                <FiZap className="text-cyan-400 mb-4" size={64} />
-                <span className="text-white font-bold tracking-widest uppercase text-sm">
-                  Chupatu System
-                </span>
+              {/* PERBAIKAN: Foto chupatu-inc-2.jpg dibuat lebih terang dan jelas */}
+              <div className="absolute inset-0 z-0">
+                <img
+                  src="/images/chupatu-inc-2.jpg"
+                  alt="Chupatu System"
+                  // Opacity dinaikkan dan mix-blend dihapus agar gambar asli keluar
+                  className="w-full h-full object-cover opacity-40 hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply"></div>
               </div>
             </div>
 
