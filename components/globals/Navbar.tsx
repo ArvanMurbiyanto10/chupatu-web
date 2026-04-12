@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import Button from "../ui/Button";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,8 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (pathname?.startsWith("/admin")) return null;
 
   const navLinks = [
     { name: "Beranda", path: "/" },
