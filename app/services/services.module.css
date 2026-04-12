@@ -1,56 +1,78 @@
 @reference "../globals.css";
 
+/* --- WRAPPER UTAMA --- */
 .wrapper {
-  @apply min-h-screen pt-32 pb-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden;
+  @apply min-h-screen pt-32 pb-32 bg-[#f8fafc] relative overflow-hidden text-slate-900 selection:bg-blue-600 selection:text-white;
 }
+
+/* Pendaran Cahaya Halus */
 .bgGlowLeft {
-  @apply absolute top-40 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-20;
+  @apply absolute top-0 left-0 w-[600px] h-[600px] bg-blue-200/40 rounded-full mix-blend-multiply filter blur-[120px] opacity-70 pointer-events-none -translate-x-1/2 -translate-y-1/4;
 }
+
 .bgGlowRight {
-  @apply absolute bottom-40 right-10 w-72 h-72 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-20;
+  @apply absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-200/40 rounded-full mix-blend-multiply filter blur-[120px] opacity-70 pointer-events-none translate-x-1/3 translate-y-1/3;
 }
+
 .container {
   @apply container mx-auto px-6 md:px-12 relative z-10;
 }
+
+/* --- HEADER SECTION --- */
 .header {
-  @apply text-center mb-16 max-w-3xl mx-auto space-y-4;
+  @apply text-center max-w-4xl mx-auto mb-20 flex flex-col items-center relative z-20;
 }
+
+.badge {
+  @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-700 text-sm font-bold mb-8 shadow-sm;
+}
+
 .title {
-  @apply text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight;
+  @apply text-5xl md:text-7xl font-black text-[#0F172A] leading-[1.1] mb-6 tracking-tighter;
 }
+
 .textHighlight {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400;
 }
+
 .subtitle {
-  @apply text-lg text-gray-600 leading-relaxed;
+  @apply text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl font-medium;
 }
+
+/* --- GRID & CARDS --- */
 .grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
 }
+
 .card {
-  @apply p-8 rounded-[2rem] bg-white/60 backdrop-blur-xl border border-white/80 shadow-xl shadow-gray-200/40 transition-all duration-300;
+  @apply p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(37,99,235,0.15)] flex flex-col cursor-default;
 }
-.cardCenterLast {
-  @apply lg:col-start-2;
-}
+
 .cardHeader {
-  @apply flex items-center gap-4 mb-6;
+  @apply flex flex-col gap-5 mb-6;
 }
+
 .iconBox {
-  @apply w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner;
+  @apply w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6;
 }
+
 .cardTitle {
-  @apply text-xl font-bold text-gray-800 leading-tight flex-1;
+  @apply text-2xl font-black text-[#0F172A] leading-tight tracking-tight group-hover:text-blue-600 transition-colors duration-300;
 }
+
+/* --- LIST ITEMS --- */
 .list {
-  @apply space-y-3;
+  @apply space-y-4 mt-auto pt-4 border-t border-slate-50;
 }
+
 .listItem {
   @apply flex items-start gap-3;
 }
+
 .bullet {
-  @apply min-w-[6px] h-[6px] rounded-full bg-blue-400 mt-[8px];
+  @apply min-w-[8px] h-[8px] rounded-full mt-[6px] transition-transform duration-300;
 }
+
 .listText {
-  @apply text-sm text-gray-600 leading-relaxed;
+  @apply text-sm text-slate-500 leading-relaxed font-medium group-hover:text-slate-700 transition-colors duration-300;
 }

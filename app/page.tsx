@@ -100,11 +100,14 @@ export default function Home() {
 
   // Parallax effects
   const yText = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const yShoe = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const opacityHero = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   // State untuk Magic Result Slider (Before/After)
   const [sliderPos, setSliderPos] = useState(50);
+
+  // Link Google Drive Aplikasi Chupatu
+  const appDownloadLink =
+    "https://drive.usercontent.google.com/download?id=1qFRCiwx-w7gygMkrSIL_8G8ZZTePX5PW&export=download&authuser=0";
 
   // URL Gambar Sepatu untuk Slider
   const shoeImageUrl =
@@ -112,121 +115,80 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className={styles.mainWrapper}>
-      {/* 1. HERO SECTION */}
-      <section className={styles.heroSection}>
-        <div className={styles.glowCircle1}></div>
-        <div className={styles.glowCircle2}></div>
+      {/* 1. HERO SECTION (RATA KIRI & BACKGROUND FOTO) */}
+      <section
+        className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-cover bg-center bg-no-repeat z-0"
+        style={{ backgroundImage: "url('/images/laundry-sepatu.jpg')" }}
+      >
+        {/* Overlay Gelap di sisi Kiri (agar teks terbaca) memudar ke transparan di sisi Kanan */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#070B14]/90 via-[#070B14]/70 to-transparent"></div>
+        {/* Lapis bayangan dasar agar foto tidak terlalu menyilaukan */}
+        <div className="absolute inset-0 bg-[#070B14]/20 z-0"></div>
+        {/* Gradasi bawah agar menyatu mulus dengan section berikutnya */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#070B14] z-0"></div>
 
-        <div className={styles.sectionContainer}>
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-3xl">
             <motion.div
               style={{ y: yText, opacity: opacityHero }}
-              className="z-20"
+              className="flex flex-col items-start text-left w-full"
             >
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-blue-900 rounded-full text-sm font-bold mb-6 shadow-lg"
+                className="inline-flex items-center gap-3 px-4 py-2 bg-slate-800/60 backdrop-blur-md border border-slate-700/50 text-slate-300 rounded-full text-xs md:text-sm font-semibold mb-6 shadow-lg"
               >
-                <FiZap className="text-amber-500" /> Era Baru Perawatan Sepatu
+                <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                AI-Powered Shoe Care
               </motion.div>
+
               <motion.h1
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className={styles.heroTitle}
+                className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-snug md:leading-tight tracking-tight mb-5 uppercase"
               >
-                Kembalikan <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">
-                  Pesona Sepatumu
+                Perawatan Sepatu <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-300">
+                  Premium,
                 </span>{" "}
                 <br />
-                Secara Magis.
+                Di Genggaman.
               </motion.h1>
+
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
-                className={styles.heroSubtitle}
+                className="text-base md:text-lg text-slate-300 mb-8 max-w-xl font-medium leading-relaxed"
               >
-                Perawatan sepatu premium berbasis AI pertama di Indonesia.
-                Analisis pintar, penjemputan instan, dan hasil yang dijamin
-                membuatmu terkesima.
+                Kembalikan pesona sepatu kesayanganmu dengan presisi. Didukung
+                oleh AI untuk analisis material dan tracking real-time langsung
+                di ujung jarimu.
               </motion.p>
+
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.6 }}
-                className={styles.btnGroup}
+                className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
               >
+                {/* Tombol Unduh ke Google Drive */}
+                <button
+                  onClick={() => window.open(appDownloadLink, "_blank")}
+                  className="px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-base md:text-lg shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 w-full sm:w-auto"
+                >
+                  Unduh Aplikasi <FiSmartphone size={20} />
+                </button>
                 <button
                   onClick={() =>
-                    window.scrollTo({ top: 4000, behavior: "smooth" })
+                    window.scrollTo({ top: 800, behavior: "smooth" })
                   }
-                  className={styles.btnPrimary}
+                  className="px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-transparent border border-slate-500 text-white font-bold text-base md:text-lg transition-all duration-300 hover:bg-slate-800 hover:border-slate-700 flex items-center justify-center w-full sm:w-auto"
                 >
-                  LIHAT HASIL MAGIS <FiArrowRight />
+                  Lihat Layanan
                 </button>
-                <button className={styles.btnSecondary}>UNDUH APLIKASI</button>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              style={{ y: yShoe }}
-              className="relative z-10 hidden lg:flex justify-center items-center h-full"
-            >
-              <motion.div
-                animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-                transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-                className="absolute w-[450px] h-[450px] rounded-full border border-dashed border-blue-400/30 flex items-center justify-center"
-              >
-                <div className="w-[350px] h-[350px] rounded-full border border-blue-300/20"></div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [-20, 20, -20], rotate: [-2, 3, -2] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 6,
-                  ease: "easeInOut",
-                }}
-                className="relative z-20 drop-shadow-2xl"
-              >
-                <img
-                  src={shoeImageUrl}
-                  alt="Premium Sneaker"
-                  className="w-[500px] object-cover rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(2,62,138,0.5)] transform -rotate-12 hover:rotate-0 transition-transform duration-700"
-                  style={{
-                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                  }}
-                />
-
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 4, delay: 1 }}
-                  className="absolute -right-10 top-10 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50"
-                >
-                  <p className="text-xs font-bold text-slate-400 uppercase">
-                    AI Detected
-                  </p>
-                  <p className="font-black text-blue-600 flex items-center gap-2">
-                    <FiCheckCircle /> Nike Air Max
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, 15, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, delay: 0.5 }}
-                  className="absolute -left-12 bottom-20 bg-[#0F172A]/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-slate-700 text-white"
-                >
-                  <p className="text-xs font-bold text-blue-300 uppercase">
-                    Status
-                  </p>
-                  <p className="font-black flex items-center gap-2">
-                    <FiZap className="text-amber-400" /> Deep Cleaning
-                  </p>
-                </motion.div>
               </motion.div>
             </motion.div>
           </div>
@@ -234,17 +196,19 @@ export default function Home() {
       </section>
 
       {/* 2. KENAPA LAUNDRY SEPATU DI CHUPATU? */}
-      <section className="py-32 bg-slate-50 relative">
+      <section className="py-32 bg-slate-50 relative z-20 -mt-16 rounded-t-[4rem] shadow-[0_-20px_50px_rgba(0,0,0,0.05)] border-t border-white/50">
         <div className={styles.sectionContainer}>
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-blue-600 font-black tracking-widest uppercase text-sm mb-4 block"
-            >
+          {/* Animasi Header Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+            className="text-center max-w-3xl mx-auto mb-20"
+          >
+            <span className="text-blue-600 font-black tracking-widest uppercase text-sm mb-4 block">
               The Chupatu Difference
-            </motion.span>
+            </span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
               Kenapa Harus Cuci Sepatu di Chupatu?
             </h2>
@@ -252,34 +216,53 @@ export default function Home() {
               Sepatu kesayangan Anda pantas mendapatkan lebih dari sekadar "air
               dan sabun biasa". Kami memberikan perawatan level eksibisi.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Animasi Container Induk untuk Staggering */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+            className="grid md:grid-cols-3 gap-8"
+          >
             {whyUsData.map((item, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className={`group ${styles.glassCard}`}
+                key={i} 
+                variants={{
+                  hidden: { opacity: 0, y: 80, scale: 0.85 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { type: "spring", bounce: 0.5, duration: 0.8 },
+                  },
+                }}
+                className={`group ${styles.glassCard} hover:border-blue-200 cursor-pointer`}
               >
-                <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 shadow-lg shadow-blue-500/30 transform -rotate-6 group-hover:rotate-0 transition-transform">
+                <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 shadow-lg shadow-blue-500/30 transform -rotate-6 group-hover:rotate-0 group-hover:scale-110 transition-all duration-300">
                   <item.icon />
                 </div>
                 <h3 className="text-2xl font-black text-slate-900 mb-4">
-                  {item.title}
+                  {item.title} 
                 </h3>
                 <p className="text-slate-600 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </section>  
 
-      {/* 3. PREVIEW LIVE TRACKING (NEW) */}
+      {/* 3. PREVIEW LIVE TRACKING */}
       <section className="py-32 bg-white relative overflow-hidden border-t border-slate-100">
-        {/* Background Decorative Blob */}
         <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[100px] opacity-60 -translate-y-1/2 translate-x-1/3"></div>
 
         <div className={styles.sectionContainer}>
@@ -379,17 +362,14 @@ export default function Home() {
 
               {/* Rangka HP (Phone Mockup) */}
               <div className="w-[320px] h-[650px] bg-slate-900 rounded-[3rem] border-[12px] border-slate-900 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden ring-4 ring-slate-100">
-                {/* Kamera / Notch Area */}
                 <div className="absolute top-0 inset-x-0 h-6 bg-slate-900 w-32 mx-auto rounded-b-2xl z-50 flex justify-center items-center gap-2">
                   <div className="w-12 h-1.5 bg-slate-800 rounded-full"></div>
                   <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
                 </div>
 
-                {/* Layar HP */}
                 <div className="bg-slate-50 w-full h-full relative flex flex-col">
-                  {/* Area Peta (Map) */}
+                  {/* Area Peta */}
                   <div className="flex-1 relative overflow-hidden bg-[#E2E8F0]">
-                    {/* Grid Pattern Peta */}
                     <div
                       className="absolute inset-0 opacity-30"
                       style={{
@@ -398,8 +378,6 @@ export default function Home() {
                         backgroundSize: "30px 30px",
                       }}
                     ></div>
-
-                    {/* Garis Rute (SVG Path) */}
                     <svg
                       className="absolute inset-0 w-full h-full"
                       viewBox="0 0 100 100"
@@ -414,18 +392,14 @@ export default function Home() {
                         className="animate-pulse opacity-70"
                       />
                     </svg>
-
-                    {/* Pin Rumah (Tujuan) */}
                     <div className="absolute left-[20%] top-[80%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center shadow-lg border-[3px] border-white z-10">
                       <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
                     </div>
-
-                    {/* Pin Workshop (Asal) */}
                     <div className="absolute left-[80%] top-[20%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-lg border-[3px] border-white z-10">
                       <FiTarget className="text-white w-3 h-3" />
                     </div>
 
-                    {/* Ikon Kendaraan Berjalan */}
+                    {/* Ikon Kurir */}
                     <motion.div
                       className="absolute w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl border border-slate-100 z-20"
                       animate={{
@@ -445,11 +419,9 @@ export default function Home() {
                     </motion.div>
                   </div>
 
-                  {/* Panel Bawah (Informasi Kurir) */}
+                  {/* Info Kurir */}
                   <div className="bg-white rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.08)] relative z-30 p-6 flex flex-col -mt-4">
-                    {/* Pull Bar */}
                     <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-6"></div>
-
                     <div className="flex justify-between items-center mb-6">
                       <div>
                         <h3 className="font-black text-slate-800 text-lg">
@@ -466,7 +438,6 @@ export default function Home() {
                         <FiMap size={20} />
                       </div>
                     </div>
-
                     <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
                       <img
                         src="https://ui-avatars.com/api/?name=Budi+Santoso&background=023e8a&color=fff"
@@ -532,7 +503,7 @@ export default function Home() {
                 Janji kami kepada Anda bukan hanya tentang sepatu yang bersih,
                 tapi juga ketenangan pikiran.
               </p>
-              <button className="flex items-center gap-3 text-white font-bold pb-2 border-b-2 border-blue-500 hover:text-blue-400 transition-colors">
+              <button className="flex items-center gap-3 text-white font-bold pb-2 border-b-2 border-blue-50 hover:text-blue-400 transition-colors">
                 Pelajari Garansi Kami <FiArrowRight />
               </button>
             </div>
@@ -745,7 +716,10 @@ export default function Home() {
                 cucian pertamamu menggunakan teknologi AI.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <button className="px-10 py-5 bg-white text-blue-900 rounded-full font-black text-lg shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105">
+                <button
+                  onClick={() => window.open(appDownloadLink, "_blank")}
+                  className="px-10 py-5 bg-white text-blue-900 rounded-full font-black text-lg shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105"
+                >
                   DOWNLOAD APLIKASI <FiSmartphone size={24} />
                 </button>
               </div>

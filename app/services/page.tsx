@@ -9,6 +9,7 @@ import {
   FiMessageCircle,
   FiBox,
   FiUserCheck,
+  FiCreditCard,
 } from "react-icons/fi";
 import styles from "./services.module.css";
 
@@ -18,8 +19,9 @@ export default function ServicesPage() {
       id: 1,
       title: "Sistem Onboarding",
       icon: FiSmartphone,
-      color: "text-blue-500",
+      color: "text-blue-600",
       bgColor: "bg-blue-50",
+      bulletColor: "bg-blue-400",
       points: [
         "Welcome & Landing Page Lottie.",
         "Login instan via Google One-Tap.",
@@ -30,8 +32,9 @@ export default function ServicesPage() {
       id: 2,
       title: "Pemesanan Cerdas",
       icon: FiCpu,
-      color: "text-indigo-500",
+      color: "text-indigo-600",
       bgColor: "bg-indigo-50",
+      bulletColor: "bg-indigo-400",
       points: [
         "Pemesanan Intuitif & Custom Service.",
         "Magic Result (AI) berbasis Gemini.",
@@ -40,10 +43,11 @@ export default function ServicesPage() {
     },
     {
       id: 3,
-      title: "Live Tracking Real-Time",
+      title: "Live Tracking",
       icon: FiMap,
-      color: "text-emerald-500",
+      color: "text-emerald-600",
       bgColor: "bg-emerald-50",
+      bulletColor: "bg-emerald-400",
       points: [
         "Integrasi Peta Interaktif.",
         "Status Progress transparan.",
@@ -54,8 +58,9 @@ export default function ServicesPage() {
       id: 4,
       title: "Digital Invoice",
       icon: FiFileText,
-      color: "text-amber-500",
+      color: "text-amber-600",
       bgColor: "bg-amber-50",
+      bulletColor: "bg-amber-400",
       points: [
         "Manajemen Riwayat Pesanan.",
         "Auto-Generated Nota PDF.",
@@ -66,11 +71,12 @@ export default function ServicesPage() {
       id: 5,
       title: "Pusat Komunikasi",
       icon: FiMessageCircle,
-      color: "text-rose-500",
+      color: "text-rose-600",
       bgColor: "bg-rose-50",
+      bulletColor: "bg-rose-400",
       points: [
         "Direct Chat terintegrasi.",
-        "Notifikasi Real-Time.",
+        "Notifikasi Real-Time update.",
         "Detail histori informasi.",
       ],
     },
@@ -78,79 +84,108 @@ export default function ServicesPage() {
       id: 6,
       title: "Rak Sepatu Digital",
       icon: FiBox,
-      color: "text-cyan-500",
+      color: "text-cyan-600",
       bgColor: "bg-cyan-50",
+      bulletColor: "bg-cyan-400",
       points: [
         "Manajemen profil koleksi sepatu.",
-        "Fast Re-Booking kilat.",
+        "Fast Re-Booking order kilat.",
         "Lacak histori perawatan.",
       ],
     },
     {
       id: 7,
-      title: "Personalisasi UI Dinamis",
+      title: "UI/UX Dinamis",
       icon: FiUserCheck,
-      color: "text-violet-500",
+      color: "text-violet-600",
       bgColor: "bg-violet-50",
+      bulletColor: "bg-violet-400",
       points: [
         "Kendali penuh manajemen profil.",
         "Antarmuka Glassmorphism premium.",
-        "Transisi Shimmer Animations modern.",
+        "Transisi Shimmer modern.",
+      ],
+    },
+    {
+      id: 8,
+      title: "Payment Gateway",
+      icon: FiCreditCard,
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
+      bulletColor: "bg-orange-400",
+      points: [
+        "Multi-metode pembayaran.",
+        "Verifikasi saldo otomatis.",
+        "Support E-Wallet & Virtual Account.",
       ],
     },
   ];
 
   return (
     <div className={styles.wrapper}>
+      {/* Efek Cahaya Latar */}
       <div className={styles.bgGlowLeft}></div>
       <div className={styles.bgGlowRight}></div>
+
       <div className={styles.container}>
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className={styles.header}
         >
+          <div className={styles.badge}>
+            <span className="flex h-2 w-2 rounded-full bg-cyan-500 animate-pulse"></span>
+            Preview Kapabilitas Aplikasi
+          </div>
           <h1 className={styles.title}>
-            Fitur Canggih di Balik{" "}
+            Fitur Canggih di Balik <br className="hidden md:block" />
             <span className={styles.textHighlight}>Chupatu.</span>
           </h1>
           <p className={styles.subtitle}>
             Eksplorasi arsitektur aplikasi kelas enterprise kami. Semua didesain
-            untuk kenyamananmu.
+            dengan presisi tinggi untuk kenyamanan dan keamanan Anda.
           </p>
         </motion.div>
+
         <motion.div
           initial="hidden"
           animate="show"
+          viewport={{ once: true, margin: "-50px" }}
           variants={{
             hidden: { opacity: 0 },
-            show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+            show: { opacity: 1, transition: { staggerChildren: 0.1 } },
           }}
           className={styles.grid}
         >
-          {appCapabilities.map((feature, index) => (
+          {appCapabilities.map((feature) => (
             <motion.div
               key={feature.id}
               variants={{
-                hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 40, scale: 0.95 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { type: "spring", bounce: 0.4 },
+                },
               }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className={`${styles.card} ${index === 6 ? styles.cardCenterLast : ""}`}
+              className={`${styles.card} group`}
             >
               <div className={styles.cardHeader}>
                 <div
                   className={`${styles.iconBox} ${feature.bgColor} ${feature.color}`}
                 >
-                  <feature.icon size={28} />
+                  <feature.icon size={26} strokeWidth={2.5} />
                 </div>
                 <h2 className={styles.cardTitle}>{feature.title}</h2>
               </div>
               <ul className={styles.list}>
                 {feature.points.map((point, i) => (
                   <li key={i} className={styles.listItem}>
-                    <div className={styles.bullet}></div>
+                    <div
+                      className={`${styles.bullet} ${feature.bulletColor} group-hover:scale-125`}
+                    ></div>
                     <p className={styles.listText}>{point}</p>
                   </li>
                 ))}
