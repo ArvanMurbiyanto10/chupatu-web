@@ -1,78 +1,28 @@
 @reference "../globals.css";
 
-/* --- WRAPPER UTAMA --- */
+/* --- WRAPPER UTAMA TEMA TERANG --- */
 .wrapper {
-  @apply min-h-screen pt-32 pb-32 bg-[#f8fafc] relative overflow-hidden text-slate-900 selection:bg-blue-600 selection:text-white;
-}
-
-/* Pendaran Cahaya Halus */
-.bgGlowLeft {
-  @apply absolute top-0 left-0 w-[600px] h-[600px] bg-blue-200/40 rounded-full mix-blend-multiply filter blur-[120px] opacity-70 pointer-events-none -translate-x-1/2 -translate-y-1/4;
-}
-
-.bgGlowRight {
-  @apply absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-200/40 rounded-full mix-blend-multiply filter blur-[120px] opacity-70 pointer-events-none translate-x-1/3 translate-y-1/3;
+  /* Menggunakan Off-White/Light Slate agar terasa bersih dan elegan */
+  @apply min-h-screen pt-32 pb-24 bg-[#f8fafc] relative overflow-hidden text-slate-900 selection:bg-blue-600 selection:text-white;
 }
 
 .container {
-  @apply container mx-auto px-6 md:px-12 relative z-10;
+  /* Diperlebar menggunakan max-w-screen-2xl agar panel bergeser lebih leluasa */
+  @apply max-w-screen-2xl mx-auto px-6 md:px-8 relative z-10;
 }
 
-/* --- HEADER SECTION --- */
-.header {
-  @apply text-center max-w-4xl mx-auto mb-20 flex flex-col items-center relative z-20;
+/* --- KUSTOMISASI SCROLLBAR UNTUK PANEL KANAN --- */
+/* Agar saat teks penjelasan panjang, scrollbar-nya tidak merusak estetika putih bersih */
+:global(.custom-scrollbar)::-webkit-scrollbar {
+  width: 6px;
 }
-
-.badge {
-  @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-700 text-sm font-bold mb-8 shadow-sm;
+:global(.custom-scrollbar)::-webkit-scrollbar-track {
+  background: transparent;
 }
-
-.title {
-  @apply text-5xl md:text-7xl font-black text-[#0F172A] leading-[1.1] mb-6 tracking-tighter;
+:global(.custom-scrollbar)::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* Warna abu-abu soft */
+  border-radius: 10px;
 }
-
-.textHighlight {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400;
-}
-
-.subtitle {
-  @apply text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl font-medium;
-}
-
-/* --- GRID & CARDS --- */
-.grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
-}
-
-.card {
-  @apply p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(37,99,235,0.15)] flex flex-col cursor-default;
-}
-
-.cardHeader {
-  @apply flex flex-col gap-5 mb-6;
-}
-
-.iconBox {
-  @apply w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6;
-}
-
-.cardTitle {
-  @apply text-2xl font-black text-[#0F172A] leading-tight tracking-tight group-hover:text-blue-600 transition-colors duration-300;
-}
-
-/* --- LIST ITEMS --- */
-.list {
-  @apply space-y-4 mt-auto pt-4 border-t border-slate-50;
-}
-
-.listItem {
-  @apply flex items-start gap-3;
-}
-
-.bullet {
-  @apply min-w-[8px] h-[8px] rounded-full mt-[6px] transition-transform duration-300;
-}
-
-.listText {
-  @apply text-sm text-slate-500 leading-relaxed font-medium group-hover:text-slate-700 transition-colors duration-300;
+:global(.custom-scrollbar)::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
 }
