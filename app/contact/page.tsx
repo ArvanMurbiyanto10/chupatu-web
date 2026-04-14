@@ -11,35 +11,35 @@ import {
 } from "react-icons/fi";
 import styles from "./contact.module.css";
 
+// --- ANIMASI REUSABLE (Diletakkan di LUAR fungsi utama) ---
+const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, type: "spring", bounce: 0.4 },
+  },
+};
+
+const slideInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, type: "spring", bounce: 0.4, delay: 0.2 },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const },
+  },
+};
+
 export default function ContactPage() {
-  // --- ANIMASI REUSABLE ---
-  const slideInLeft: Variants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, type: "spring", bounce: 0.4 },
-    },
-  };
-
-  const slideInRight: Variants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, type: "spring", bounce: 0.4, delay: 0.2 },
-    },
-  };
-
-  const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" as const },
-    },
-  };
-
   return (
     <div className={styles.wrapper}>
       {/* Latar Belakang Cahaya / Glow Ambience */}
@@ -66,7 +66,7 @@ export default function ContactPage() {
           </h1>
           <p className={styles.subtitle}>
             Punya pertanyaan seputar layanan Chupatu, penawaran kemitraan, atau
-            butuh bantuan teknis? Tim kami akan selalu siap mendengarkan Anda.
+            butuh bantuan teknis? Tim kami selalu siap mendengarkan Anda.
           </p>
         </motion.div>
 
