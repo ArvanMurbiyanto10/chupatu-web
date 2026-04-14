@@ -11,13 +11,10 @@ import Link from "next/link";
 import {
   FiArrowRight,
   FiSmartphone,
-  FiCpu,
   FiMap,
-  FiFileText,
   FiBox,
   FiCheckCircle,
   FiShield,
-  FiZap,
   FiDroplet,
   FiFeather,
   FiLayers,
@@ -29,25 +26,37 @@ import {
   FiChevronLeft,
   FiChevronRight,
   FiStar,
+  FiPackage,
 } from "react-icons/fi";
 import styles from "./home.module.css";
 
 // --- DATA CONSTANTS ---
+
+// Data Section 2 (Why Us)
 const whyUsData = [
   {
     icon: FiTarget,
     title: "Bukan Sekadar Dicuci",
-    desc: "Kami merawat. Setiap material dari Suede, Canvas, hingga Leather memiliki SOP penanganan dan chemical yang berbeda untuk mencegah kerusakan.",
+    desc: "Setiap material dari Suede, Canvas, hingga Leather memiliki SOP penanganan dan chemical berbeda untuk mencegah kerusakan.",
+    iconColor: "text-blue-600",
+    bgColor: "bg-blue-50",
+    image: "/images/fotokiri.jpg", // Slot foto sementara
   },
   {
     icon: FiAward,
     title: "Teknisi Tersertifikasi",
-    desc: "Sepatu Anda ditangani oleh spesialis yang telah melewati pelatihan ketat dan memahami anatomi sepatu secara mendalam.",
+    desc: "Sepatu ditangani oleh spesialis yang melewati pelatihan ketat dan memahami anatomi sepatu secara mendalam.",
+    iconColor: "text-emerald-600",
+    bgColor: "bg-emerald-50",
+    image: "/images/fototengah.avif", // Slot foto sementara
   },
   {
     icon: FiDroplet,
     title: "Chemical Premium",
-    desc: "Kami menggunakan sabun pembersih khusus sepatu bersertifikat yang ramah lingkungan dan aman untuk warna asli sepatu Anda.",
+    desc: "Menggunakan sabun bersertifikat yang ramah lingkungan dan 100% aman untuk warna asli sepatu Anda.",
+    iconColor: "text-violet-600",
+    bgColor: "bg-violet-50",
+    image: "/images/fotokanan.jpg", // Slot foto sementara
   },
 ];
 
@@ -69,34 +78,42 @@ const prioritiesData = [
   },
 ];
 
+// Data Section 5 (Layanan) - DENGAN SLOT FOTO
 const servicesData = [
   {
     icon: FiDroplet,
     title: "Cuci Reguler",
     desc: "Pembersihan menyeluruh harian agar tetap segar.",
-    color: "bg-blue-50",
+    color: "text-blue-600",
+    bgColor: "bg-blue-50",
+    image: "/images/reguler.jpg", // Gantilah dengan foto cuci reguler
   },
   {
     icon: FiLayers,
     title: "Deep Clean",
     desc: "Perawatan intensif hingga pori material terdalam.",
-    color: "bg-blue-100",
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-50",
+    image: "/images/deepclean.jpeg", // Gantilah dengan foto deep clean
   },
   {
     icon: FiFeather,
     title: "Repaint",
     desc: "Restorasi warna pudar agar tajam seperti baru.",
-    color: "bg-blue-50",
+    color: "text-fuchsia-600",
+    bgColor: "bg-fuchsia-50",
+    image: "/images/repaint.jpg", // Gantilah dengan foto repaint
   },
   {
     icon: FiSun,
     title: "Unyellowing",
     desc: "Hapus noda kuning pada midsole akibat oksidasi.",
-    color: "bg-blue-100",
+    color: "text-amber-600",
+    bgColor: "bg-amber-50",
+    image: "/images/unyellowing.jpg", // Gantilah dengan foto unyellowing
   },
 ];
 
-// DATA BARU: Data Foto Before-After
 const magicResultsData = [
   {
     id: 1,
@@ -125,21 +142,21 @@ export default function Home() {
     offset: ["start start", "end start"],
   });
 
-  // Parallax effects
+  // Parallax effects Hero
   const yText = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacityHero = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // State untuk Magic Result Slider
+  // state untuk Magic Result Slider
   const [sliderPos, setSliderPos] = useState(50);
   const [activeMagicResult, setActiveMagicResult] = useState(0);
 
-  // Link Google Drive Aplikasi Chupatu
+  // Link Aplikasi
   const appDownloadLink =
     "https://drive.usercontent.google.com/download?id=1qFRCiwx-w7gygMkrSIL_8G8ZZTePX5PW&export=download&authuser=0";
 
   return (
     <div ref={containerRef} className={styles.mainWrapper}>
-      {/* 1. HERO SECTION (RATA KIRI & BACKGROUND FOTO) */}
+      {/* 1. HERO SECTION */}
       <section
         className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: "url('/images/laundry-sepatu.jpg')" }}
@@ -201,14 +218,6 @@ export default function Home() {
                 >
                   Unduh Aplikasi <FiSmartphone size={20} />
                 </button>
-                <button
-                  onClick={() =>
-                    window.scrollTo({ top: 800, behavior: "smooth" })
-                  }
-                  className="px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-transparent border border-slate-500 text-white font-bold text-base md:text-lg transition-all duration-300 hover:bg-slate-800 hover:border-slate-700 flex items-center justify-center w-full sm:w-auto"
-                >
-                  Lihat Layanan
-                </button>
               </motion.div>
             </motion.div>
           </div>
@@ -216,26 +225,36 @@ export default function Home() {
       </section>
 
       {/* ========================================================= */}
-      {/* 2. KENAPA LAUNDRY SEPATU DI CHUPATU? (DENGAN ANIMASI PREMIUM) */}
+      {/* 2. KENAPA LAUNDRY SEPATU DI CHUPATU? (ANIMASI TELETUBBIES) */}
       {/* ========================================================= */}
-      <section className="py-32 bg-slate-50 relative z-20 -mt-16 rounded-t-[4rem] shadow-[0_-20px_50px_rgba(0,0,0,0.05)] border-t border-white/50">
+      <section className="py-32 bg-white relative z-20 -mt-16 rounded-t-[4rem] shadow-[0_-20px_50px_rgba(0,0,0,0.03)] border-t border-slate-100">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-50 rounded-full blur-[100px] opacity-70 pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-50 rounded-full blur-[100px] opacity-70 pointer-events-none"></div>
+
         <div className={styles.sectionContainer}>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
-            className="text-center max-w-3xl mx-auto mb-20"
+            transition={{ duration: 0.7, type: "spring", bounce: 0.2 }}
+            className="text-center max-w-4xl mx-auto mb-20 relative z-10"
           >
-            <span className="text-blue-600 font-black tracking-widest uppercase text-sm mb-4 block">
+            <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-bold tracking-widest uppercase text-xs mb-5 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+              </span>
               The Chupatu Difference
             </span>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
-              Kenapa Harus Cuci Sepatu di Chupatu?
+            <h2 className="text-5xl md:text-6xl font-black text-slate-950 mb-7 tracking-tighter leading-tight">
+              Standar Baru Perawatan <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                Sepatu Premium.
+              </span>
             </h2>
-            <p className="text-lg text-slate-600">
-              Sepatu kesayangan Anda pantas mendapatkan lebih dari sekadar "air
-              dan sabun biasa". Kami memberikan perawatan level eksibisi.
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
+              Sepatu Anda pantas mendapatkan lebih dari sekadar "air dan sabun
+              biasa". Di Chupatu, kami memberikan perawatan level eksibisi.
             </p>
           </motion.div>
 
@@ -247,50 +266,56 @@ export default function Home() {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: { staggerChildren: 0.2 },
+                transition: { staggerChildren: 0.35, delayChildren: 0.1 },
               },
             }}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid lg:grid-cols-3 gap-10 relative z-10"
           >
             {whyUsData.map((item, i) => (
               <motion.div
                 key={i}
                 variants={{
-                  hidden: { opacity: 0, y: 50, scale: 0.9 },
+                  hidden: { opacity: 0, y: 250, scale: 0.5 },
                   visible: {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    transition: { type: "spring", bounce: 0.4, duration: 0.8 },
+                    transition: { type: "spring", bounce: 0.65, duration: 1.2 },
                   },
                 }}
-                whileHover={{ y: -15, scale: 1.02 }}
-                // Desain kartu di-update dengan Tailwind murni agar efek spesifiknya jalan sempurna
-                className="group relative p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 transition-all duration-300 z-10 overflow-hidden cursor-default"
+                whileHover={{
+                  y: -15,
+                  rotateX: 2,
+                  rotateY: -2,
+                  transition: { duration: 0.3 },
+                }}
+                style={{ perspective: "1000px" }}
+                className="group cursor-default"
               >
-                {/* Dynamic Background Gradient pada Hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="w-full h-full bg-white rounded-[3rem] border border-slate-100 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.03)] transition-all duration-300 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] group-hover:border-blue-100/50 flex flex-col transform-style-3d overflow-hidden relative">
+                  {/* Slot Foto */}
+                  <div className="relative w-full h-56 overflow-hidden shrink-0">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-90 group-hover:opacity-70 transition-opacity"></div>
 
-                {/* Animated Glowing Orb di belakang Ikon */}
-                <div className="absolute top-10 left-10 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:scale-150"></div>
+                    <div
+                      className={`absolute bottom-6 left-8 w-16 h-16 ${item.bgColor} rounded-2xl flex items-center justify-center shadow-lg border border-white/50 backdrop-blur-md transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 translate-z-10`}
+                    >
+                      <item.icon className={`text-3xl ${item.iconColor}`} />
+                    </div>
+                  </div>
 
-                <div className="relative z-20">
-                  {/* Ikon Box Animasi */}
-                  <motion.div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-8 shadow-lg shadow-blue-500/30 transform transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-cyan-400 group-hover:rotate-6 group-hover:scale-110">
-                    <item.icon />
-                  </motion.div>
-
-                  {/* Teks */}
-                  <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed font-medium group-hover:text-slate-700 transition-colors duration-300">
-                    {item.desc}
-                  </p>
-
-                  {/* Animated Progress Bar Decor */}
-                  <div className="mt-8 w-12 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <div className="w-full h-full bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
+                  <div className="p-8 md:p-10 flex flex-col flex-1 relative z-10 bg-white">
+                    <h3 className="text-2xl md:text-3xl font-extrabold text-slate-950 mb-4 tracking-tight group-hover:text-blue-700 transition-colors translate-z-10">
+                      {item.title}
+                    </h3>
+                    <p className="text-lg text-slate-600 leading-relaxed font-medium translate-z-10">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -397,7 +422,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Rangka HP (Phone Mockup) */}
+              {/* Rangka HP */}
               <div className="w-[320px] h-[650px] bg-slate-900 rounded-[3rem] border-[12px] border-slate-900 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden ring-4 ring-slate-100">
                 <div className="absolute top-0 inset-x-0 h-6 bg-slate-900 w-32 mx-auto rounded-b-2xl z-50 flex justify-center items-center gap-2">
                   <div className="w-12 h-1.5 bg-slate-800 rounded-full"></div>
@@ -561,49 +586,98 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. LAYANAN KAMI */}
-      <section className="py-32 bg-white">
+      {/* ========================================================= */}
+      {/* 5. LAYANAN KAMI (ANIMASI BOUNCY SLIDE-IN + FOTO CARD) */}
+      {/* ========================================================= */}
+      <section className="py-32 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-slate-50 rounded-full blur-[100px] opacity-70 pointer-events-none"></div>
+
         <div className={styles.sectionContainer}>
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
-              Layanan Perawatan <span className="text-blue-600">Terbaik.</span>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, type: "spring" }}
+            className="text-center max-w-3xl mx-auto mb-20"
+          >
+            <h2 className="text-4xl md:text-5xl font-black text-slate-950 mb-6 tracking-tight leading-tight">
+              Layanan Perawatan <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500">
+                Terbaik Untuk Anda.
+              </span>
             </h2>
-            <p className="text-lg text-slate-600">
+            <p className="text-xl text-slate-600 font-medium">
               Pilih menu perawatan yang didesain khusus untuk mengembalikan
               kondisi prima sepatu Anda.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
             {servicesData.map((srv, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className={`${styles.serviceCard} group relative overflow-hidden`}
+                variants={{
+                  // Animasi Bouncy Slide-In Horizontal (dari kanan)
+                  hidden: { opacity: 0, x: 100 },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: { type: "spring", bounce: 0.5, duration: 1 },
+                  },
+                }}
+                whileHover={{
+                  y: -15,
+                  scale: 1.03,
+                  transition: { type: "spring", bounce: 0.4 },
+                }}
+                className="group bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-[0_10px_30px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-300 flex flex-col cursor-pointer"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-400 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                <div className="relative z-10">
+                {/* Slot Foto */}
+                <div className="relative w-full h-48 overflow-hidden shrink-0">
+                  <img
+                    src={srv.image}
+                    alt={srv.title}
+                    className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
+
                   <div
-                    className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-8 transition-colors duration-500 ${srv.color} text-blue-600 group-hover:bg-blue-600 group-hover:text-white shadow-inner`}
+                    className={`absolute top-6 right-6 w-14 h-14 ${srv.bgColor} rounded-2xl flex items-center justify-center border border-white/50 backdrop-blur-sm shadow-inner group-hover:scale-110 transition-transform duration-500`}
                   >
-                    <srv.icon />
+                    <srv.icon className={`text-2xl ${srv.color}`} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-blue-700 transition-colors">
+                </div>
+
+                <div className="p-8 flex flex-col flex-1 bg-white">
+                  <h3 className="text-2xl font-extrabold mb-3 text-slate-950 group-hover:text-blue-700 transition-colors">
                     {srv.title}
                   </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                  <p className="text-slate-600 text-base leading-relaxed mb-8 flex-1">
                     {srv.desc}
                   </p>
-                  <button className="flex items-center gap-2 text-blue-600 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    Lihat Detail <FiArrowRight />
+
+                  <button className="flex items-center gap-2.5 text-blue-600 font-bold text-sm w-full pt-5 border-t border-slate-100 group-hover:gap-3 transition-all duration-300">
+                    Lihat Detail
+                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center transition-all group-hover:bg-blue-600 group-hover:text-white">
+                      <FiArrowRight size={16} />
+                    </div>
                   </button>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -726,46 +800,108 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. HOW IT WORKS */}
+      {/* ========================================================= */}
+      {/* 7. HOW IT WORKS (ANIMASI 3D FLIP & NEON ICON) */}
+      {/* ========================================================= */}
       <section className="py-24 bg-white">
         <div className={styles.sectionContainer}>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-black text-slate-900">
-              4 Langkah Menuju Sepatu Bersih.
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-2xl mx-auto mb-20"
+          >
+            <span className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3 block">
+              Process
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-950 mb-6 tracking-tight">
+              4 Langkah Menuju{" "}
+              <span className="text-blue-600">Sepatu Bersih.</span>
             </h2>
-          </div>
-          <div className="grid md:grid-cols-4 gap-8">
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.25,
+                },
+              },
+            }}
+            className="grid sm:grid-cols-2 md:grid-cols-4 gap-8"
+          >
             {[
               {
                 icon: FiSmartphone,
                 title: "1. Order",
                 desc: "Pesan layanan via aplikasi.",
+                color: "from-blue-600 to-cyan-500",
+                glow: "shadow-blue-500/20",
               },
               {
                 icon: FiTruck,
                 title: "2. Pick-up",
                 desc: "Kurir jemput ke lokasi Anda.",
+                color: "from-emerald-500 to-teal-400",
+                glow: "shadow-emerald-500/20",
               },
               {
                 icon: FiDroplet,
                 title: "3. Cleaning",
                 desc: "Proses cuci standar tinggi.",
+                color: "from-fuchsia-600 to-purple-500",
+                glow: "shadow-fuchsia-500/20",
               },
               {
-                icon: FiBox,
+                icon: FiPackage,
                 title: "4. Delivery",
                 desc: "Sepatu kembali rapi.",
+                color: "from-amber-500 to-orange-400",
+                glow: "shadow-amber-500/20",
               },
             ].map((step, i) => (
-              <div key={i} className="text-center group cursor-pointer">
-                <div className="w-24 h-24 bg-slate-50 rounded-[2rem] flex items-center justify-center text-4xl text-blue-600 mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-xl group-hover:shadow-blue-500/30">
-                  <step.icon />
+              <motion.div
+                key={i}
+                variants={{
+                  // Animasi Flip & Scale Up
+                  hidden: { opacity: 0, scale: 0, rotateY: 180 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    transition: { type: "spring", bounce: 0.3, duration: 1 },
+                  },
+                }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                className="text-center group p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.02)] transition-all hover:border-slate-200"
+                style={{ perspective: "1000px" }}
+              >
+                <div
+                  className={`w-28 h-28 mx-auto mb-10 relative transform-style-3d transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 ${step.glow} group-hover:shadow-2xl`}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${step.color} rounded-[2rem] blur-xl opacity-20 group-hover:opacity-100 transition-opacity`}
+                  ></div>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${step.color} rounded-[2rem] flex items-center justify-center text-5xl text-white shadow-lg border border-white/50 backdrop-blur-sm transform translate-z-10`}
+                  >
+                    <step.icon className="drop-shadow-lg" />
+                  </div>
                 </div>
-                <h4 className="font-black text-slate-900 mb-2">{step.title}</h4>
-                <p className="text-sm text-slate-500">{step.desc}</p>
-              </div>
+
+                <h4 className="font-extrabold text-2xl text-slate-950 mb-3 tracking-tight group-hover:text-blue-700 transition-colors">
+                  {step.title}
+                </h4>
+                <p className="text-slate-600 text-sm font-medium leading-relaxed">
+                  {step.desc}
+                </p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
