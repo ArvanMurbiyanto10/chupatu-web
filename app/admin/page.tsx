@@ -1,15 +1,13 @@
 "use client";
 
 import {
-  FiTrendingUp, FiShoppingBag, FiUsers, FiDollarSign,
+  FiTrendingUp, FiShoppingBag, FiDollarSign,
   FiArrowUpRight, FiArrowDownRight, FiMoreHorizontal,
-  FiStar
+  FiStar, FiCheckCircle // 👉 1. Import ikon CheckCircle pengganti FiUsers
 } from "react-icons/fi";
 
-// Import hook Firebase yang udah terbukti jalan
 import { useDashboardRealtime } from '@/hooks/useDashboardRealtime';
 
-// Helper format Rupiah ditaruh di sini biar aman
 const formatRupiah = (value: number) => {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -18,15 +16,19 @@ const formatRupiah = (value: number) => {
   }).format(value);
 };
 
-// PASTIKAN TIDAK ADA KATA 'async' DI SINI
 export default function AdminDashboard() {
-  const { totalSales, totalOrders, todayVisitors, totalExpenses, loading } = useDashboardRealtime();
+  const {
+    totalSales, totalOrders, completedOrders, totalExpenses, // 👉 2. Ambil completedOrders
+    chartData, topServices, topCustomers, loading
+  } = useDashboardRealtime();
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-96">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500 mb-4"></div>
-        <p className="text-gray-500 font-medium animate-pulse">Menghubungkan ke Brankas Firebase...</p>
+        <p className="text-gray-500 font-medium animate-pulse">
+          Menghubungkan ke Brankas Firebase...
+        </p>
       </div>
     );
   }
@@ -37,7 +39,9 @@ export default function AdminDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Hi, Selamat Datang! 👋</h1>
-          <p className="text-sm text-gray-500 mt-1">Sistem tersinkronisasi otomatis dengan aplikasi mobile.</p>
+          <p className="text-sm text-gray-500 mt-1">
+            Sistem tersinkronisasi otomatis dengan aplikasi mobile.
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-bold animate-pulse shadow-sm">
@@ -68,12 +72,12 @@ export default function AdminDashboard() {
           color="blue"
         />
         <StatCard
-          title="Pengunjung Hari Ini"
-          value={todayVisitors.toString()}
-          change="+2.64%"
+          title="Pesanan Selesai" // 👉 3. Ganti judulnya
+          value={completedOrders.toString()} // 👉 4. Masukkan variabelnya
+          change="+12.4%" // Angka dummy untuk pemanis
           positive={true}
-          subtitle="Estimasi pengunjung"
-          icon={<FiUsers />}
+          subtitle="Status: Done"
+          icon={<FiCheckCircle />} // 👉 5. Ganti ikonnya
           color="violet"
         />
         <StatCard
@@ -87,45 +91,83 @@ export default function AdminDashboard() {
         />
       </div>
 
-      {/* Overview Chart (Static) */}
+      {/* Overview Chart (SEKARANG REAL-TIME!) */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 lg:p-6">
         <h2 className="text-lg font-bold text-gray-800 mb-6">Pendapatan Bulanan</h2>
         <div className="flex items-end gap-[6px] sm:gap-3 h-48 sm:h-56">
-          {[35, 45, 40, 55, 50, 65, 60, 70, 75, 85, 90, 80].map((h, i) => (
-            <div key={i} className="flex-1 flex flex-col items-center gap-1 group">
-              <div className="w-full bg-emerald-500 rounded-t-md transition-all duration-300 group-hover:bg-emerald-600" style={{ height: `${h}%` }} />
-              <span className="text-[10px] text-gray-400 font-medium mt-1">M{i + 1}</span>
-            </div>
-          ))}
+          {/* Mapping tinggi grafik berdasarkan data array chartData */}
+          {chartData && chartData.map((tinggiBulanIni: number, index: number) => {
+            const namaBulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
+            return (
+              <div key={index} className="flex-1 flex flex-col items-center gap-1 group">
+                <div
+                  className="w-full bg-emerald-500 rounded-t-md transition-all duration-500 group-hover:bg-emerald-600"
+                  style={{ height: `${tinggiBulanIni}%` }}
+                />
+                <span className="text-[10px] text-gray-400 font-medium mt-1">
+                  {namaBulan[index]}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Bottom Sections */}
+      {/* Bottom Sections - SEKARANG REAL-TIME! */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+        {/* Layanan Populer */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
           <h3 className="font-bold text-gray-800 mb-4">Layanan Populer</h3>
           <div className="space-y-4">
-            {["Deep Cleaning", "Unyellowing", "Repaint"].map((s, i) => (
-              <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                <span className="text-sm font-medium text-gray-700">{s}</span>
-                <span className="text-xs font-bold text-emerald-600">Terlaris</span>
-              </div>
-            ))}
+            {/* Proteksi kalau database masih kosong */}
+            {!topServices || topServices.length === 0 ? (
+              <p className="text-xs text-gray-400 text-center py-4">Belum ada data layanan.</p>
+            ) : (
+              topServices.map((service: any, i: number) => (
+                <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                  <span className="text-sm font-medium text-gray-700">
+                    {service.name}
+                  </span>
+                  <div className="flex flex-col items-end">
+                    <span className="text-xs font-bold text-emerald-600">
+                      Top #{i + 1}
+                    </span>
+                    <span className="text-[10px] text-gray-400">
+                      {service.count}x Dipesan
+                    </span>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
+
+        {/* Pelanggan Setia */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
           <h3 className="font-bold text-gray-800 mb-4">Pelanggan Setia</h3>
           <div className="space-y-4">
-            {["Nanda Putra", "Sarah Wijaya", "Aditya Fajar"].map((n, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 text-xs font-bold">{n[0]}</div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-800">{n}</p>
-                  <p className="text-[10px] text-gray-400">Regular Customer</p>
+            {/* Proteksi kalau database masih kosong */}
+            {!topCustomers || topCustomers.length === 0 ? (
+              <p className="text-xs text-gray-400 text-center py-4">Belum ada data pelanggan.</p>
+            ) : (
+              topCustomers.map((cust: any, i: number) => (
+                <div key={i} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-xl transition-colors">
+                  <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 text-xs font-bold uppercase shrink-0">
+                    {cust.name.charAt(0)}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-800 truncate">{cust.name}</p>
+                    <p className="text-[10px] text-gray-400">
+                      {cust.count}x Transaksi
+                    </p>
+                  </div>
+                  <div className="flex items-center text-amber-500 text-xs font-bold shrink-0">
+                    {cust.rating} <FiStar className="fill-amber-400 ml-1" />
+                  </div>
                 </div>
-                <div className="flex items-center text-amber-500 text-xs font-bold">4.9 <FiStar className="fill-amber-400 ml-1" /></div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </div>
