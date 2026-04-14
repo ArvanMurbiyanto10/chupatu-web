@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   FiMail,
   FiMapPin,
@@ -12,8 +12,12 @@ import {
 import styles from "./contact.module.css";
 
 export default function ContactPage() {
+  import { motion, Variants } from "framer-motion";
+
+  // ... kode lainnya ...
+
   // --- ANIMASI REUSABLE ---
-  const slideInLeft = {
+  const slideInLeft: Variants = {
     hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
@@ -22,7 +26,7 @@ export default function ContactPage() {
     },
   };
 
-  const slideInRight = {
+  const slideInRight: Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: {
       opacity: 1,
@@ -31,13 +35,13 @@ export default function ContactPage() {
     },
   };
 
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    }, // <-- as const di sini
   };
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef } from "react";
 import {
   FiZap,
@@ -53,16 +53,16 @@ const valuePoints = [
 ];
 
 // --- ANIMASI REUSABLE ---
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
+    transition: { duration: 0.8, ease: "easeOut" as const }, // <-- Tambahkan as const
   },
 };
 
-const scaleUp = {
+const scaleUp: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: {
     opacity: 1,
@@ -71,7 +71,7 @@ const scaleUp = {
   },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -82,7 +82,7 @@ const staggerContainer = {
   },
 };
 
-const pelletPop = {
+const pelletPop: Variants = {
   hidden: { opacity: 0, scale: 0.6, y: 40, rotate: -5 },
   visible: {
     opacity: 1,
@@ -93,12 +93,12 @@ const pelletPop = {
   },
 };
 
-const slideUpFade = {
+const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.7, ease: "easeOut" as const }, // <-- Tambahkan as const
   },
 };
 
