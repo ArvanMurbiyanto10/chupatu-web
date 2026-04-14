@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion"; // Pastikan Variants di-import
+// PERBAIKAN: Variants di-import secara eksplisit
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   FiArrowRight,
   FiArrowLeft,
@@ -145,7 +146,7 @@ export default function ArtikelPage() {
   const featuredArticle = articlesData[0];
   const gridArticles = articlesData.slice(1);
 
-  // --- ANIMASI REUSABLE DENGAN FIX TYPESCRIPT ---
+  // --- PERBAIKAN: Variants & as const untuk Vercel ---
   const headerContainerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -163,7 +164,7 @@ export default function ArtikelPage() {
       y: 0,
       transition: {
         duration: 0.8,
-        type: "spring" as const, // FIX: as const
+        type: "spring" as const, // Kunci: as const
         bounce: 0.3,
       },
     },
@@ -171,13 +172,14 @@ export default function ArtikelPage() {
 
   return (
     <div className={styles.wrapper}>
+      {/* Dynamic Background Blobs */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <motion.div
           animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
           transition={{
             repeat: Infinity,
             duration: 10,
-            ease: "linear" as const,
+            ease: "linear" as const, // Kunci: as const
           }}
           className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/40 rounded-full blur-[120px]"
         ></motion.div>
@@ -186,7 +188,7 @@ export default function ArtikelPage() {
           transition={{
             repeat: Infinity,
             duration: 12,
-            ease: "linear" as const,
+            ease: "linear" as const, // Kunci: as const
           }}
           className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-cyan-200/30 rounded-full blur-[100px]"
         ></motion.div>
