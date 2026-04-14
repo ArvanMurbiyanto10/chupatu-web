@@ -164,7 +164,7 @@ export default function ServicesPage() {
               className="text-lg md:text-xl text-slate-600 font-medium leading-relaxed border-l-4 border-cyan-400 pl-5 py-1"
             >
               Pilih menu perawatan yang didesain khusus untuk mengembalikan
-              kondisi prima sepatu kesayangan untuk Anda.
+              kondisi prima sepatu kesayangan Anda.
             </motion.p>
           </motion.div>
 
