@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// PERBAIKAN: Menambahkan Variants di import
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   FiArrowRight,
   FiArrowLeft,
@@ -172,8 +173,8 @@ export default function ArtikelPage() {
   // Sisa artikel untuk Grid
   const gridArticles = articlesData.slice(1);
 
-  // Variants untuk animasi Staggered Header
-  const headerContainerVariants = {
+  // PERBAIKAN: Menambahkan Variants
+  const headerContainerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -183,12 +184,13 @@ export default function ArtikelPage() {
     },
   };
 
-  const headerItemVariants = {
+  // PERBAIKAN: Menambahkan Variants dan as const
+  const headerItemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, type: "spring", bounce: 0.3 },
+      transition: { duration: 0.8, type: "spring" as const, bounce: 0.3 }, // <-- as const di sini
     },
   };
 
