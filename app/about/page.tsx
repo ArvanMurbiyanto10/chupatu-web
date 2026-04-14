@@ -224,7 +224,7 @@ export default function AboutPage() {
                   className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4">
+                <div className="absolute bottom-4 left-4 z-10">
                   <p className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2">
                     <FiCheckCircle className="text-cyan-400" /> Presisi AI
                   </p>
@@ -255,7 +255,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-slate-900/40 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-20"></div>
 
               {/* Floating Element over Photo */}
-              <div className="absolute top-8 left-8 w-16 h-16 md:w-20 md:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/30 text-white shadow-lg">
+              <div className="absolute top-8 left-8 w-16 h-16 md:w-20 md:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/30 text-white shadow-lg z-10">
                 <FiTrendingUp size={32} />
               </div>
             </motion.div>
@@ -414,24 +414,26 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* Visual Kanan - SLOT FOTO APLIKASI/SISTEM */}
+            {/* Visual Kanan - SLOT FOTO APLIKASI/SISTEM (Diperbaiki) */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={scaleUp}
-              className="relative w-full h-[450px] md:h-[650px] rounded-[3rem] bg-slate-100 overflow-hidden shadow-2xl border-[8px] border-white order-1 lg:order-2 group"
+              className="relative w-full h-[450px] md:h-[650px] rounded-[3rem] bg-slate-100 shadow-2xl border-[8px] border-white order-1 lg:order-2 group"
             >
-              {/* Gambar Background Utama */}
-              <img
-                src="/images/unyellowing.jpg" /* <-- SLOT FOTO SISTEM/APP */
-                alt="Chupatu System"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105 filter contrast-125"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+              {/* Gambar Background Utama - Harus diberi overflow-hidden pada parent atau gambar agar melengkung rapi */}
+              <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
+                <img
+                  src="/images/unyellowing.jpg" /* <-- SLOT FOTO SISTEM/APP */
+                  alt="Chupatu System"
+                  className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105 filter contrast-125"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+              </div>
 
-              {/* Dekorasi Floating Tech - Diperbaiki Strukturnya */}
-              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 p-5 md:p-6 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              {/* Dekorasi Floating Tech */}
+              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 p-5 md:p-6 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
                 <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-3">
                   <span className="font-bold text-xs md:text-sm tracking-widest uppercase flex items-center gap-2">
                     <FiSmartphone className="text-cyan-400" /> Chupatu App
