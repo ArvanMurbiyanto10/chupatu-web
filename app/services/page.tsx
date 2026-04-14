@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
 import {
   FiArrowRight,
@@ -86,8 +86,8 @@ export default function ServicesPage() {
 
   const activeData = servicesData[activeService];
 
-  // Variants untuk animasi Staggered Header
-  const headerContainerVariants = {
+  // --- PERBAIKAN VARIANTS DENGAN TIPE DATA TYPESCRIPT ---
+  const headerContainerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -97,25 +97,26 @@ export default function ServicesPage() {
     },
   };
 
-  const headerItemVariants = {
+  const headerItemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, type: "spring", bounce: 0.3 },
+      transition: {
+        duration: 0.8,
+        type: "spring" as const, // FIX: Menambahkan as const
+        bounce: 0.3,
+      },
     },
   };
 
   return (
     <div className={styles.wrapper}>
-      {/* Background Ambience (Tema Terang) */}
+      {/* Background Ambience */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-100/60 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 z-0"></div>
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-100/50 rounded-full blur-[120px] pointer-events-none translate-x-1/3 z-0"></div>
 
       <div className={styles.container}>
-        {/* ========================================= */}
-        {/* HEADER SECTION (EDITORIAL PREMIUM) */}
-        {/* ========================================= */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 relative z-10 pt-10">
           <motion.div
             variants={headerContainerVariants}
@@ -123,7 +124,6 @@ export default function ServicesPage() {
             animate="visible"
             className="max-w-3xl"
           >
-            {/* Badge Estetik */}
             <motion.div variants={headerItemVariants}>
               <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 text-blue-700 text-xs md:text-sm font-black mb-8 shadow-sm tracking-widest uppercase">
                 <span className="relative flex h-2.5 w-2.5">
@@ -134,7 +134,6 @@ export default function ServicesPage() {
               </div>
             </motion.div>
 
-            {/* Judul Utama dengan Swoosh Underline */}
             <motion.h1
               variants={headerItemVariants}
               className="text-5xl md:text-6xl lg:text-[4.5rem] text-[#0F172A] mb-8 tracking-tighter leading-[1.05]"
@@ -144,7 +143,6 @@ export default function ServicesPage() {
               </span>
               <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400 relative inline-block pb-2 pr-4">
                 Level Premium.
-                {/* SVG Garis Lengkung di bawah teks */}
                 <svg
                   className="absolute w-full h-4 -bottom-1 left-0 text-cyan-400/40"
                   viewBox="0 0 100 10"
@@ -161,7 +159,6 @@ export default function ServicesPage() {
               </span>
             </motion.h1>
 
-            {/* Deskripsi dengan gaya Editorial (Garis Kiri) */}
             <motion.p
               variants={headerItemVariants}
               className="text-lg md:text-xl text-slate-600 font-medium leading-relaxed border-l-4 border-cyan-400 pl-5 py-1"
@@ -171,7 +168,6 @@ export default function ServicesPage() {
             </motion.p>
           </motion.div>
 
-          {/* Tombol Navigasi Slider */}
           <AnimatePresence>
             {!showDetail && (
               <motion.div
@@ -183,7 +179,7 @@ export default function ServicesPage() {
               >
                 <button
                   onClick={handlePrev}
-                  className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 bg-white group"
+                  className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg transition-all duration-300 bg-white group"
                 >
                   <FiChevronLeft
                     size={28}
@@ -192,7 +188,7 @@ export default function ServicesPage() {
                 </button>
                 <button
                   onClick={handleNext}
-                  className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 bg-white group"
+                  className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg transition-all duration-300 bg-white group"
                 >
                   <FiChevronRight
                     size={28}
@@ -204,12 +200,7 @@ export default function ServicesPage() {
           </AnimatePresence>
         </div>
 
-        {/* ========================================= */}
-        {/* INTERACTIVE LAYOUT (GALLERY & DETAIL) */}
-        {/* ========================================= */}
-        {/* Tambahkan mb-20 agar tidak terlalu mepet ke footer saat di-scroll sampai bawah */}
         <div className="flex flex-col lg:flex-row gap-6 w-full h-[70vh] min-h-[550px] max-h-[800px] relative z-10 mb-20">
-          {/* BAGIAN KIRI: KARTU ANIMASI */}
           <motion.div
             layout
             className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] h-full ${
@@ -219,7 +210,6 @@ export default function ServicesPage() {
             }`}
           >
             {!showDetail ? (
-              // STATE 1: MODE GALERI
               servicesData.map((srv, idx) => {
                 const isActive = activeService === idx;
                 return (
@@ -235,11 +225,9 @@ export default function ServicesPage() {
                       alt={srv.title}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
                     />
-
                     <div
-                      className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90" : "bg-slate-900/60 group-hover:bg-slate-900/40"}`}
+                      className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90" : "bg-slate-900/60"}`}
                     ></div>
-
                     <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end w-full h-full">
                       {isActive ? (
                         <motion.div
@@ -282,7 +270,6 @@ export default function ServicesPage() {
                 );
               })
             ) : (
-              // STATE 2: MODE FOKUS
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl bg-slate-900">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -299,7 +286,6 @@ export default function ServicesPage() {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
-
                     <div className="absolute bottom-8 left-8 max-w-[60%]">
                       <span className="text-cyan-400 font-bold tracking-widest text-sm mb-2 block drop-shadow-md">
                         CHUPATU SERVICE
@@ -310,8 +296,6 @@ export default function ServicesPage() {
                     </div>
                   </motion.div>
                 </AnimatePresence>
-
-                {/* Thumbnail Gambar Sisanya */}
                 <div className="absolute bottom-8 right-8 flex gap-3 z-20">
                   {servicesData.map((srv, idx) => {
                     if (idx === activeService) return null;
@@ -319,13 +303,12 @@ export default function ServicesPage() {
                       <motion.div
                         key={`thumb-${srv.id}`}
                         onClick={() => setActiveService(idx)}
-                        className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden cursor-pointer border-2 border-white/40 hover:border-white shadow-xl group relative"
+                        className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden cursor-pointer border-2 border-white/40 hover:border-white shadow-xl relative"
                         whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
                       >
                         <img
                           src={srv.img}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform"
+                          className="absolute inset-0 w-full h-full object-cover"
                           alt={srv.title}
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors"></div>
@@ -337,15 +320,18 @@ export default function ServicesPage() {
             )}
           </motion.div>
 
-          {/* BAGIAN KANAN: PANEL DETAIL PENJELASAN */}
           <AnimatePresence>
             {showDetail && (
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 50 }}
-                transition={{ duration: 0.6, type: "spring", bounce: 0.2 }}
-                className="w-full lg:w-[calc(40%-12px)] shrink-0 h-full bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col relative overflow-hidden"
+                transition={{
+                  duration: 0.6,
+                  type: "spring" as const,
+                  bounce: 0.2,
+                }}
+                className="w-full lg:w-[calc(40%-12px)] shrink-0 h-full bg-white rounded-[2rem] shadow-xl border border-slate-100 flex flex-col relative overflow-hidden"
               >
                 <button
                   onClick={() => setShowDetail(false)}
@@ -353,12 +339,10 @@ export default function ServicesPage() {
                 >
                   <FiX size={20} />
                 </button>
-
-                <div className="p-8 md:p-10 flex-1 overflow-y-auto custom-scrollbar pt-14 pb-14">
+                <div className="p-8 md:p-10 flex-1 overflow-y-auto pt-14 pb-14">
                   <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 font-black tracking-widest text-xs mb-6">
                     SERVICE INFO
                   </span>
-
                   <motion.div
                     key={`content-${activeData.id}`}
                     initial={{ opacity: 0, y: 10 }}
@@ -371,7 +355,6 @@ export default function ServicesPage() {
                     <p className="text-slate-600 mb-8 leading-relaxed text-lg">
                       {activeData.desc}
                     </p>
-
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 mb-8">
                       <span className="text-sm text-slate-500 font-medium block mb-1 uppercase tracking-widest">
                         Estimasi Biaya
@@ -380,7 +363,6 @@ export default function ServicesPage() {
                         {activeData.price}
                       </span>
                     </div>
-
                     <h4 className="font-bold text-slate-900 mb-5 flex items-center gap-2 text-lg">
                       <FiShield className="text-cyan-500" /> Rincian Pengerjaan
                     </h4>
