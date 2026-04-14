@@ -104,7 +104,7 @@ export default function ServicesPage() {
       y: 0,
       transition: {
         duration: 0.8,
-        type: "spring" as const, // FIX: Menambahkan as const
+        type: "spring" as const,
         bounce: 0.3,
       },
     },
