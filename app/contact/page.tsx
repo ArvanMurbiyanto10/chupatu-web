@@ -66,7 +66,7 @@ export default function ContactPage() {
           </h1>
           <p className={styles.subtitle}>
             Punya pertanyaan seputar layanan Chupatu, penawaran kemitraan, atau
-            butuh bantuan teknis? Tim kami selalu siap mendengarkan Anda.
+            butuh bantuan teknis? Tim kami akan selalu siap mendengarkan Anda.
           </p>
         </motion.div>
 
