@@ -210,7 +210,8 @@ export default function ContactPage() {
               </div>
 
               <button type="submit" className={styles.btnSubmit}>
-                Kirim Pesan Sekarang <FiSend size={18} />
+                Kirim Pesan Sekarang 🚀
+                <FiSend size={18} />
               </button>
             </form>
           </motion.div>
