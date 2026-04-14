@@ -365,6 +365,7 @@ export default function ServicesPage() {
                     </div>
                     <h4 className="font-bold text-slate-900 mb-5 flex items-center gap-2 text-lg">
                       <FiShield className="text-cyan-500" /> Rincian Pengerjaan
+                      nya
                     </h4>
                     <ul className="space-y-4 mb-4">
                       {activeData.features.map((feat, index) => (
