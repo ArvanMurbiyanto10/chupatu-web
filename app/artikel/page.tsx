@@ -22,16 +22,7 @@ const articlesData = [
     readTime: "4 Min Read",
     image:
       "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=1000&auto=format&fit=crop",
-    content: `Banyak dari kita mengira sepatu rusak karena kualitasnya yang buruk, padahal kebiasaan kitalah yang sering menjadi penyebab utama. Berikut adalah faktor perusak sepatu:
-
-1. Jarang Dibersihkan Setelah Dipakai
-Debu dan kotoran mikroskopis yang menempel akan merusak lapisan permukaan kanvas maupun kulit jika dibiarkan menumpuk.
-
-2. Terkena Air Tanpa Pengeringan Benar
-Kelembapan adalah musuh utama. Menyimpan sepatu basah di tempat tertutup akan memicu pertumbuhan jamur dan membuat material cepat lapuk.
-
-3. Penyimpanan Tidak Tepat
-Menumpuk sepatu secara sembarangan akan menyebabkan bentuk (shape) sepatu berubah secara permanen.`,
+    content: ``,
   },
   {
     id: 2,
@@ -40,16 +31,7 @@ Menumpuk sepatu secara sembarangan akan menyebabkan bentuk (shape) sepatu beruba
     readTime: "5 Min Read",
     image:
       "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1000&auto=format&fit=crop",
-    content: `Perawatan sepatu premium membutuhkan dedikasi dan teknik yang tepat. Jangan biarkan investasimu rusak karena perawatan yang salah.
-
-1. Bersihkan Secara Rutin
-Gunakan kain microfiber lembut atau sikat berbulu halus. Hindari deterjen berbahan kimia keras yang dapat memudarkan warna pabrikan.
-
-2. Sikat dengan Teknik Satu Arah
-Hindari tekanan berlebih. Sikat dengan gerakan perlahan ke satu arah untuk material seperti Suede dan Nubuck.
-
-3. Gunakan Silica Gel dan Shoe Tree
-Simpan sepatu di dalam ruangan bersuhu stabil. Masukkan Silica Gel untuk menyerap kelembapan dan gunakan Shoe Tree untuk menjaga postur sepatu tetap sempurna.`,
+    content: ``,
   },
   {
     id: 3,
@@ -58,9 +40,7 @@ Simpan sepatu di dalam ruangan bersuhu stabil. Masukkan Silica Gel untuk menyera
     readTime: "6 Min Read",
     image:
       "https://images.unsplash.com/photo-1514989940723-e8e51635b782?q=80&w=1000&auto=format&fit=crop",
-    content: `- Canvas: Sangat mudah menyerap kotoran namun paling tahan terhadap pencucian basah.
-- Leather (Kulit): Tidak boleh dicuci dengan banyak air. Butuh leather lotion untuk menjaga kelembapannya agar tidak retak.
-- Suede: Material paling sensitif. Hindari air sepenuhnya, gunakan sikat khusus suede dan penghapus karet untuk mengangkat noda kotoran.`,
+    content: ``,
   },
   {
     id: 4,
@@ -69,11 +49,7 @@ Simpan sepatu di dalam ruangan bersuhu stabil. Masukkan Silica Gel untuk menyera
     readTime: "3 Min Read",
     image:
       "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=1000&auto=format&fit=crop",
-    content: `1. Merusak Lem Sepatu (Midsole)
-Putaran mesin yang kuat dan air yang berlebihan akan menghancurkan daya rekat lem antara sol dan badan sepatu.
-
-2. Mengubah Bentuk (Deformasi)
-Bantingan di dalam tabung mesin cuci akan membuat bentuk sepatu bengkok dan kusut secara permanen.`,
+    content: ``,
   },
   {
     id: 5,
@@ -82,9 +58,7 @@ Bantingan di dalam tabung mesin cuci akan membuat bentuk sepatu bengkok dan kusu
     readTime: "4 Min Read",
     image:
       "https://images.unsplash.com/photo-1584735174965-c71d607e44e1?q=80&w=1000&auto=format&fit=crop",
-    content: `- Kantong Teh atau Bubuk Kopi: Letakkan kantong teh celup bekas yang sudah kering semalaman.
-- Baking Soda: Taburkan sedikit baking soda ke dalam insole sepatu.
-- Angin-anginkan Sepatu: Jangan langsung memasukkan sepatu ke dalam lemari tertutup.`,
+    content: ``,
   },
   {
     id: 6,
@@ -93,11 +67,7 @@ Bantingan di dalam tabung mesin cuci akan membuat bentuk sepatu bengkok dan kusu
     readTime: "4 Min Read",
     image:
       "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?q=80&w=1000&auto=format&fit=crop",
-    content: `Tanda sepatu Anda butuh Deep Clean:
-1. Terkena noda lumpur basah yang sudah mengering.
-2. Sepatu putih sudah berubah warna kekuningan.
-3. Terdapat bau yang tidak hilang.
-4. Sudah dipakai rutin selama lebih dari 3 bulan.`,
+    content: ``,
   },
   {
     id: 7,
@@ -106,7 +76,7 @@ Bantingan di dalam tabung mesin cuci akan membuat bentuk sepatu bengkok dan kusu
     readTime: "5 Min Read",
     image:
       "https://images.unsplash.com/photo-1552346154-21d32810baa3?q=80&w=1000&auto=format&fit=crop",
-    content: `Oksidasi terjadi karena reaksi antara material karet, kotoran, dan paparan sinar matahari. Anda membutuhkan layanan Unyellowing dengan hydrogen peroxide dan penjemuran di bawah sinar UV.`,
+    content: ``,
   },
   {
     id: 8,
@@ -115,7 +85,7 @@ Bantingan di dalam tabung mesin cuci akan membuat bentuk sepatu bengkok dan kusu
     readTime: "4 Min Read",
     image:
       "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1000&auto=format&fit=crop",
-    content: `Repaint adalah solusi restorasi terbaik menggunakan pewarna akrilik khusus sepatu. Proses ini meliputi preparasi noda, pengecatan berlapis, hingga tahap finisher.`,
+    content: ``,
   },
   {
     id: 9,
@@ -124,8 +94,7 @@ Bantingan di dalam tabung mesin cuci akan membuat bentuk sepatu bengkok dan kusu
     readTime: "3 Min Read",
     image:
       "https://images.unsplash.com/photo-1449505278894-297fdb3edbc1?q=80&w=1000&auto=format&fit=crop",
-    content: `1. Mencegah Crease (Lipatan): Meregangkan material di bagian toebox.
-2. Menyerap Kelembapan: Terutama jika terbuat dari kayu cedar.`,
+    content: ``,
   },
   {
     id: 10,
@@ -134,9 +103,7 @@ Bantingan di dalam tabung mesin cuci akan membuat bentuk sepatu bengkok dan kusu
     readTime: "5 Min Read",
     image:
       "https://images.unsplash.com/photo-1509695507497-903c140c43b0?q=80&w=1000&auto=format&fit=crop",
-    content: `1. Lepaskan Tali dan Insole.
-2. Sumpal dengan Kertas Koran: Ganti setiap 2-3 jam.
-3. JANGAN Dijemur di Bawah Matahari Langsung.`,
+    content: ``,
   },
 ];
 
