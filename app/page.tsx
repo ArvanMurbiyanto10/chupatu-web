@@ -253,8 +253,8 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
-              Sepatu Anda pantas mendapatkan lebih dari sekadar "air dan sabun
-              biasa". Di Chupatu, kami memberikan perawatan level eksibisi.
+              Sepatu Anda pantas mendapatkan lebih dari sekadar &quot;air dan sabun
+              biasa&quot;. Di Chupatu, kami memberikan perawatan level eksibisi.
             </p>
           </motion.div>
 

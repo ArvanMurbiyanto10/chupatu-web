@@ -22,9 +22,9 @@ export function useDashboardRealtime() {
       let totalPesanan = 0;
       let pesananSelesai = 0; // 👉 2. Keranjang untuk ngitung yang udah "Done"
       
-      let monthlyRekap = new Array(12).fill(0);
-      let servicesCount: Record<string, number> = {};
-      let customersCount: Record<string, { count: number, rating: number }> = {};
+      const monthlyRekap = new Array(12).fill(0);
+      const servicesCount: Record<string, number> = {};
+      const customersCount: Record<string, { count: number, rating: number }> = {};
 
       snapshot.forEach((doc) => {
         const data = doc.data();

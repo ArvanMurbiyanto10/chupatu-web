@@ -58,7 +58,7 @@ const fadeInUp: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" as const }, // <-- Tambahkan as const
+    transition: { duration: 0.8, ease: "easeOut" as const },
   },
 };
 
@@ -67,7 +67,7 @@ const scaleUp: Variants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.8, type: "spring" },
+    transition: { duration: 0.8, type: "spring" as const },
   },
 };
 
@@ -89,7 +89,7 @@ const pelletPop: Variants = {
     scale: 1,
     y: 0,
     rotate: 0,
-    transition: { type: "spring", bounce: 0.5, duration: 1 },
+    transition: { type: "spring" as const, bounce: 0.5, duration: 1 },
   },
 };
 
@@ -98,7 +98,7 @@ const slideUpFade: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" as const }, // <-- Tambahkan as const
+    transition: { duration: 0.7, ease: "easeOut" as const },
   },
 };
 
@@ -120,13 +120,17 @@ export default function AboutPage() {
       <div className={styles.bgGlow}></div>
       <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+        transition={{
+          duration: 100,
+          repeat: Infinity,
+          ease: "linear" as const,
+        }}
         className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-cyan-100/30 rounded-[40%] blur-[100px] pointer-events-none z-0"
       />
 
       <div className={styles.container}>
         {/* ======================================================= */}
-        {/* 1. HERO SECTION (EDITORIAL MAGAZINE STYLE W/ PHOTO SLOTS) */}
+        {/* 1. HERO SECTION (EDITORIAL MAGAZINE STYLE W/ VIDEO & PHOTO) */}
         {/* ======================================================= */}
         <section className="min-h-[90vh] flex flex-col justify-center pt-20 relative z-10 mb-20">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -176,9 +180,9 @@ export default function AboutPage() {
               </motion.div>
             </motion.div>
 
-            {/* KANAN: MASONRY PHOTO SLOTS */}
+            {/* KANAN: MASONRY SLOTS (1 VIDEO, 2 FOTO) */}
             <div className="lg:col-span-7 order-1 lg:order-2 relative h-[50vh] md:h-[70vh] w-full">
-              {/* Slot Foto 1 (Utama/Kiri) */}
+              {/* SLOT 1 (UTAMA/KIRI) - DIUBAH JADI VIDEO */}
               <motion.div
                 style={{ y: y1 }}
                 initial="hidden"
@@ -186,15 +190,19 @@ export default function AboutPage() {
                 variants={scaleUp}
                 className="absolute top-0 left-0 w-[60%] h-[70%] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white z-20 group"
               >
-                <img
-                  src="/images/reguler.jpg" /* <-- SLOT FOTO 1 */
-                  alt="Workshop / Team 1"
+                <video
+                  src="/images/tentangkami.mp4" /* <-- PASTIKAN FILE ADA DI FOLDER PUBLIC */
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                 />
+                {/* Overlay tipis agar menyatu dengan desain */}
                 <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
               </motion.div>
 
-              {/* Slot Foto 2 (Kanan Atas) */}
+              {/* SLOT 2 (KANAN ATAS) - FOTO */}
               <motion.div
                 style={{ y: y2 }}
                 initial="hidden"
@@ -204,13 +212,13 @@ export default function AboutPage() {
                 className="absolute top-[10%] right-0 w-[45%] h-[45%] rounded-[2rem] overflow-hidden shadow-xl border-4 border-white z-10 group"
               >
                 <img
-                  src="/images/repaint.jpg" /* <-- SLOT FOTO 2 */
+                  src="/images/tentangkami2.png"
                   alt="Detail Sepatu / App 1"
                   className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 filter saturate-150"
                 />
               </motion.div>
 
-              {/* Slot Foto 3 (Kanan Bawah) */}
+              {/* SLOT 3 (KANAN BAWAH) - FOTO */}
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -219,16 +227,12 @@ export default function AboutPage() {
                 className="absolute bottom-[5%] right-[10%] w-[50%] h-[40%] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white z-30 group"
               >
                 <img
-                  src="/images/fotokiri.jpg" /* <-- SLOT FOTO 3 */
+                  src="/images/tentangkami1.png"
                   alt="Detail App / Proses 2"
                   className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 z-10">
-                  <p className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-                    <FiCheckCircle className="text-cyan-400" /> Presisi AI
-                  </p>
-                </div>
+                <div className="absolute bottom-4 left-4 z-10"></div>
               </motion.div>
             </div>
           </div>
@@ -248,7 +252,7 @@ export default function AboutPage() {
               className="relative w-full h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] group"
             >
               <img
-                src="/images/fotoaboutgede.jpg" /* <-- SLOT FOTO VISI */
+                src="/images/fotokami3.png"
                 alt="Visi Chupatu"
                 className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105"
               />
@@ -318,7 +322,7 @@ export default function AboutPage() {
                 transition={{
                   duration: 0.6,
                   delay: index * 0.1,
-                  type: "spring",
+                  type: "spring" as const,
                 }}
                 className="p-6 md:p-10 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-15px_rgba(37,99,235,0.1)] hover:-translate-y-2 transition-all duration-300 flex items-start gap-4 md:gap-6 group cursor-default"
               >
@@ -386,7 +390,7 @@ export default function AboutPage() {
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.2, type: "spring" }}
+                  transition={{ delay: idx * 0.2, type: "spring" as const }}
                   className={`flex items-start gap-4 md:gap-6 p-5 md:p-6 rounded-3xl transition-all duration-300 border hover:shadow-lg hover:-translate-y-1 ${
                     item.isHighlight
                       ? "bg-blue-50/50 border-blue-200 shadow-md ring-1 ring-blue-100"
@@ -414,7 +418,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* Visual Kanan - SLOT FOTO APLIKASI/SISTEM (Diperbaiki) */}
+            {/* Visual Kanan - SLOT FOTO APLIKASI/SISTEM */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -422,17 +426,15 @@ export default function AboutPage() {
               variants={scaleUp}
               className="relative w-full h-[450px] md:h-[650px] rounded-[3rem] bg-slate-100 shadow-2xl border-[8px] border-white order-1 lg:order-2 group"
             >
-              {/* Gambar Background Utama - Harus diberi overflow-hidden pada parent atau gambar agar melengkung rapi */}
               <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
                 <img
-                  src="/images/unyellowing.jpg" /* <-- SLOT FOTO SISTEM/APP */
+                  src="/images/unyellowing.jpg"
                   alt="Chupatu System"
                   className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105 filter contrast-125"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
               </div>
 
-              {/* Dekorasi Floating Tech */}
               <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 p-5 md:p-6 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
                 <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-3">
                   <span className="font-bold text-xs md:text-sm tracking-widest uppercase flex items-center gap-2">
@@ -488,7 +490,6 @@ export default function AboutPage() {
                 whileHover={{ y: -10 }}
                 className={`${styles.cardValue} group`}
               >
-                {/* 3D Pop-up Icon Box */}
                 <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 md:mb-8 relative transform-style-3d transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-[1.2rem] md:rounded-[1.5rem] blur-lg opacity-30 group-hover:opacity-60 transition-opacity`}

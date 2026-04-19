@@ -12,8 +12,8 @@ export function useOrdersRealtime() {
     const q = query(collection(db, "bookings"));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      let fetchedOrders: any[] = [];
-      let counts: Record<string, number> = {
+      const fetchedOrders: any[] = [];
+      const counts: Record<string, number> = {
         pending: 0, confirmed: 0, "picked up": 0, 
         processing: 0, ready: 0, delivery: 0, done: 0, canceled: 0
       };
