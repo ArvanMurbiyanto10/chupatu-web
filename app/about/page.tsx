@@ -428,7 +428,7 @@ export default function AboutPage() {
             >
               <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden">
                 <img
-                  src="/images/unyellowing.jpg"
+                  src="/images/fotokami4.png"
                   alt="Chupatu System"
                   className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105 filter contrast-125"
                 />
